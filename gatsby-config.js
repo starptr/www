@@ -1,9 +1,13 @@
+require("dotenv").config({
+	path: `.env.${process.env.NODE_ENV}`,
+});
+
 module.exports = {
 	siteMetadata: {
 		title: `&ref`,
 		author: {
 			name: `Yuto Nishida`,
-			summary: `.`,
+			summary: ``,
 		},
 		description: `Low quality thought dump from a local shower near you!`,
 		siteUrl: `https://starptr.netlify.app/`,
@@ -53,7 +57,9 @@ module.exports = {
 		{
 			resolve: `gatsby-plugin-google-analytics`,
 			options: {
-				//trackingId: `ADD YOUR TRACKING ID HERE`,
+				trackingId: `${process.env.ANALYTICS_TRACKINGID}`,
+				sampleRate: 100,
+				siteSpeedSampleRate: 100,
 			},
 		},
 		`gatsby-plugin-feed`,
