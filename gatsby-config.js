@@ -13,6 +13,8 @@ module.exports = {
 		siteUrl: `https://starptr.netlify.app/`,
 		social: {
 			twitter: `starptr`,
+			instagram: `yuto.rinsta`,
+			linkedin: `yuto-n-770494187`,
 		},
 	},
 	plugins: [

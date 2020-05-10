@@ -29,6 +29,8 @@ const Bio = () => {
 					}
 					social {
 						twitter
+						instagram
+						linkedin
 					}
 				}
 			}
@@ -59,9 +61,17 @@ const Bio = () => {
 			<p>
 				Streaming direct thought dumps from{" "}
 				<strong>{author.name}</strong>. {author.summary}
-				{` `}
+				<br />
+				Follow me on{" "}
 				<a href={`https://twitter.com/${social.twitter}`}>
-					You should follow him on Twitter
+					Twitter
+				</a>,{" "}
+				<a href={`https://instagram.com/${social.instagram}`}>
+					Instagram
+				</a>
+				, or connect with me on{" "}
+				<a href={`https://www.linkedin.com/in/${social.linkedin}`}>
+					LinkedIn
 				</a>
 			</p>
 		</div>

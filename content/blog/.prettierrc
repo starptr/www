@@ -1,0 +1,8 @@
+{
+	"arrowParens": "avoid",
+	"tabWidth": 4,
+	"useTabs": true,
+	"printWidth": 80,
+	"parser": "markdown",
+	"proseWrap": "always"
+}
