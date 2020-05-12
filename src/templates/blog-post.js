@@ -41,11 +41,17 @@ const BlogPostTemplate = ({ data, pageContext, location }) => {
 				<MDXRenderer>{post.body}</MDXRenderer>
 				<hr
 					style={{
+						marginTop: rhythm(1),
 						marginBottom: rhythm(1),
 					}}
 				/>
 				<footer>
-					<Bio />
+					<Bio
+						style={{
+							marginTop: rhythm(1),
+							marginBottom: rhythm(1),
+						}}
+					/>
 				</footer>
 			</article>
 

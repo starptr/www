@@ -1,24 +1,10 @@
 import Typography from "typography";
 import oceanBeachTheme from "typography-theme-ocean-beach";
 
-/*
-import Wordpress2016 from "typography-theme-wordpress-2016";
-Wordpress2016.overrideThemeStyles = () => {
-	return {
-		"a.gatsby-resp-image-link": {
-			boxShadow: `none`,
-		},
-	};
-};
-
-delete Wordpress2016.googleFonts;
-*/
-
 const theme = {
 	title: "Cool",
 	baseFontSize: "20px",
 	baseLineHeight: 1.5,
-	scaleRatio: 2,
 	googleFonts: [
 		{
 			name: "Montserrat",
@@ -38,7 +24,7 @@ const theme = {
 	headerWeight: "600",
 	bodyWeight: "normal",
 	boldWeight: "bold",
-	blockMarginBottom: 0,
+	//blockMarginBottom: 0,
 	overrideStyles: ({ adjustFontSizeTo, scale, rhythm }, options, styles) => {
 		const linkColor = "#4078c0";
 		return {
@@ -51,8 +37,30 @@ const theme = {
 			"a:hover,a:active": {
 				textDecoration: "underline",
 			},
-			"h1,h2,h3,h4,h5,h6": {
-				marginTop: rhythm(1.5),
+			"li>ul,li>ol": {
+				marginLeft: "20px",
+				marginTop: 0,
+			},
+			"ul li,ol li": {
+				marginBottom: 0,
+			},
+			blockquote: {
+				...scale(1 / 5),
+				borderLeft: `${rhythm(3 / 16)} solid #595959`,
+				color: `#595959`,
+				paddingLeft: rhythm(10 / 16),
+				fontStyle: "italic",
+				marginLeft: 0,
+				marginRight: 0,
+			},
+			"blockquote cite": {
+				...adjustFontSizeTo(options.baseFontSize),
+				color: options.bodyColor,
+				fontStyle: "normal",
+				fontWeight: options.bodyWeight,
+			},
+			"blockquote cite:before": {
+				content: '"— "',
 			},
 		};
 	},

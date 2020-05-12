@@ -5,6 +5,7 @@ import { PageProps, Link, graphql } from "gatsby";
 import Bio from "../components/bio";
 import Layout from "../components/layout";
 import SEO from "../components/seo";
+import SmallBoxed from "../components/SmallBoxed";
 import { rhythm } from "../utils/typography";
 
 type Data = {
@@ -37,7 +38,12 @@ const BlogIndex = ({ data, location }: PageProps<Data>) => {
 	return (
 		<Layout location={location} title={siteTitle}>
 			<SEO title="All posts" />
-			<Bio />
+			<Bio
+				style={{
+					marginTop: rhythm(1.25),
+					marginBottom: rhythm(1.5),
+				}}
+			/>
 			{posts.map(({ node }) => {
 				const title = node.frontmatter.title || node.fields.slug;
 				return (
@@ -45,7 +51,8 @@ const BlogIndex = ({ data, location }: PageProps<Data>) => {
 						<header>
 							<h3
 								style={{
-									marginBottom: rhythm(1 / 4),
+									marginTop: rhythm(1.5),
+									marginBottom: 0,
 								}}
 							>
 								<Link
@@ -55,7 +62,14 @@ const BlogIndex = ({ data, location }: PageProps<Data>) => {
 									{title}
 								</Link>
 							</h3>
-							<small>{node.frontmatter.date}</small>
+							<div
+								style={{
+									marginTop: rhythm(1 / 8),
+									marginBottom: rhythm(1 / 8),
+								}}
+							>
+								<small>{node.frontmatter.date}</small>
+							</div>
 						</header>
 						<section>
 							<p
@@ -90,7 +104,7 @@ export const pageQuery = graphql`
 						slug
 					}
 					frontmatter {
-						date(formatString: "MMMM D, Y. H:mm a")
+						date(formatString: "MMMM D, Y · H:mm a")
 						title
 						description
 					}

@@ -11,7 +11,7 @@ import Image from "gatsby-image";
 
 import { rhythm } from "../utils/typography";
 
-const Bio = () => {
+const Bio = props => {
 	const data = useStaticQuery(graphql`
 		query BioQuery {
 			avatar: file(absolutePath: { regex: "/profile-pic-4.jpg/" }) {
@@ -43,6 +43,7 @@ const Bio = () => {
 			style={{
 				display: `flex`,
 				alignItems: `center`,
+				...props.style,
 			}}
 		>
 			<Image
@@ -56,9 +57,14 @@ const Bio = () => {
 				}}
 				imgStyle={{
 					borderRadius: `30%`,
+					marginBottom: 0,
 				}}
 			/>
-			<p>
+			<p
+				style={{
+					marginBottom: 0,
+				}}
+			>
 				Streaming direct thought dumps from{" "}
 				<strong>{author.name}</strong>. {author.summary}
 				<br />
@@ -73,6 +79,7 @@ const Bio = () => {
 				<a href={`https://www.linkedin.com/in/${social.linkedin}`}>
 					LinkedIn
 				</a>
+				!
 			</p>
 		</div>
 	);
