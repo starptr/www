@@ -26,6 +26,7 @@ module.exports = {
 			options: {
 				path: `${__dirname}/content/blog`,
 				name: `blog`,
+				ignore: [`**/\.hide`],
 			},
 		},
 		{
@@ -55,7 +56,9 @@ module.exports = {
 					`gatsby-remark-prismjs`,
 					`gatsby-remark-copy-linked-files`,
 					`gatsby-remark-smartypants`,
+					`gatsby-remark-katex`,
 				],
+				remarkPlugins: [require("remark-math")],
 			},
 		},
 		`gatsby-transformer-sharp`,

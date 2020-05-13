@@ -1,6 +1,6 @@
 import React from "react";
-import { Link } from "gatsby";
 
+import Link from "../components/Link";
 import { rhythm, scale } from "../utils/typography";
 
 const Layout = ({ location, title, children }) => {
@@ -17,7 +17,6 @@ const Layout = ({ location, title, children }) => {
 			>
 				<Link
 					style={{
-						boxShadow: `none`,
 						color: `inherit`,
 					}}
 					to={`/`}
@@ -36,7 +35,6 @@ const Layout = ({ location, title, children }) => {
 			>
 				<Link
 					style={{
-						boxShadow: `none`,
 						color: `inherit`,
 					}}
 					to={`/`}
