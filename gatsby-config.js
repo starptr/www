@@ -9,6 +9,9 @@ module.exports = {
 			name: `Yuto Nishida`,
 			summary: ``,
 		},
+		blog: {
+			title: `Post[]`,
+		},
 		description: `Low quality thought dump from a local shower near you!`,
 		siteUrl: `https://starptr.netlify.app/`,
 		social: {
