@@ -1,5 +1,6 @@
 import React from "react";
 import { Link, graphql } from "gatsby";
+import { MDXProvider } from "@mdx-js/react";
 import { MDXRenderer } from "gatsby-plugin-mdx";
 import "katex/dist/katex.min.css";
 
@@ -7,6 +8,14 @@ import Bio from "../components/bio";
 import Layout from "../components/layout";
 import SEO from "../components/seo";
 import { rhythm, scale } from "../utils/typography";
+
+const blogAdjustComponent = child => {
+	if (child.props.className === "footnotes") {
+		return <small {...child.props} />;
+	} else {
+		return child;
+	}
+};
 
 const BlogPostTemplate = ({ data, pageContext, location }) => {
 	const post = data.mdx;
@@ -39,7 +48,21 @@ const BlogPostTemplate = ({ data, pageContext, location }) => {
 						{post.frontmatter.date}
 					</p>
 				</header>
-				<MDXRenderer>{post.body}</MDXRenderer>
+				<MDXProvider
+					components={{
+						wrapper: ({ children, ...props }) => {
+							//If no members, return itself
+							if (!children) return <>{children}</>;
+							//If only 1 member in mdx, children is not an array
+							const updatedChildren = Array.isArray(children)
+								? children.map(blogAdjustComponent)
+								: blogAdjustComponent(children);
+							return <section>{updatedChildren}</section>;
+						},
+					}}
+				>
+					<MDXRenderer>{post.body}</MDXRenderer>
+				</MDXProvider>
 				<hr
 					style={{
 						marginTop: rhythm(1),
