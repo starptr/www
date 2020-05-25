@@ -7,33 +7,102 @@ const Layout = ({ location, title, children }) => {
 	const rootPath = `${__PATH_PREFIX__}/`;
 	let header;
 
+	const tabs = [
+		{
+			title,
+			to: `/`,
+		},
+		{
+			title: `Post[]`,
+			to: `/blog`,
+		},
+	];
+
 	//if (location.pathname === rootPath) {
 	if (true) {
 		header = (
 			<div
 				style={{
 					display: "flex",
+					alignItems: "center",
+					marginBottom: rhythm(1.25),
 				}}
 			>
-				<h1
-					style={{
-						...scale(1.5),
-						marginTop: 0,
-						marginRight: rhythm(1.5),
-					}}
-				>
-					<Link
-						style={{
-							color: `inherit`,
-						}}
-						to={`/`}
-					>
-						{title}
-					</Link>
-				</h1>
-				<h2>
-					test
-				</h2>
+				{tabs.map((tab, index) => {
+					const isFirst = index === 0;
+					const isHere = location.pathname === tab.to;
+
+					return React.createElement(
+						isFirst ? "h1" : "h3",
+						{
+							style: {
+								...(isFirst && scale(1.5)),
+								marginTop: 0,
+								marginRight: rhythm(2),
+								marginBottom: 0,
+							},
+						},
+						React.createElement(
+							isHere ? "p" : Link,
+							{
+								style: {
+									color: `inherit`,
+									marginBottom: 0,
+									...(!isFirst && isHere && {
+										textDecoration: `underline`,
+									}),
+								},
+								to: tab.to,
+							},
+							tab.title
+						)
+					);
+
+					if (index === 0) {
+						return (
+							<h1
+								style={{
+									...scale(1.5),
+									marginTop: 0,
+									marginRight: rhythm(1.5),
+								}}
+							>
+								<Link
+									style={{
+										color: `inherit`,
+										...(location.pathname === tab.to && {
+											textDecoration: `underline`,
+										}),
+									}}
+									to={tab.to}
+								>
+									{tab.title}
+								</Link>
+							</h1>
+						);
+					} else {
+						return (
+							<h2
+								style={{
+									marginTop: 0,
+									marginRight: rhythm(1.5),
+								}}
+							>
+								<Link
+									style={{
+										color: `inherit`,
+										...(location.pathname === tab.to && {
+											textDecoration: `underline`,
+										}),
+									}}
+									to={tab.to}
+								>
+									{tab.title}
+								</Link>
+							</h2>
+						);
+					}
+				})}
 			</div>
 		);
 	} else {
