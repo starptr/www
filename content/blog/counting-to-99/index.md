@@ -19,4 +19,8 @@ Consider the following:
 | ![Eight](./8.png) | 8     |
 | ![Nine](./9.png)  | 9     |
 
-If each hand represents a digit in base $10$, then two hands can express anywhere from $0$ to $99$.
+If each hand represents a digit in base $10$, then two hands can express anywhere from $0$ to $99$. For example, we can show $10$ by showing $1$ on the left hand and $0$ on the right hand:
+
+| Left            | Right            |
+| --------------- | ---------------- |
+| ![One](./1.jpg) | ![Zero](./0.png) |

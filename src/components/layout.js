@@ -7,23 +7,34 @@ const Layout = ({ location, title, children }) => {
 	const rootPath = `${__PATH_PREFIX__}/`;
 	let header;
 
-	if (location.pathname === rootPath) {
+	//if (location.pathname === rootPath) {
+	if (true) {
 		header = (
-			<h1
+			<div
 				style={{
-					...scale(1.5),
-					marginTop: 0,
+					display: "flex",
 				}}
 			>
-				<Link
+				<h1
 					style={{
-						color: `inherit`,
+						...scale(1.5),
+						marginTop: 0,
+						marginRight: rhythm(1.5),
 					}}
-					to={`/`}
 				>
-					{title}
-				</Link>
-			</h1>
+					<Link
+						style={{
+							color: `inherit`,
+						}}
+						to={`/`}
+					>
+						{title}
+					</Link>
+				</h1>
+				<h2>
+					test
+				</h2>
+			</div>
 		);
 	} else {
 		header = (
