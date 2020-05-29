@@ -1,0 +1,11 @@
+---
+title: "Low Level Graphing Calculator"
+date: "2020-05-27T18:28:00"
+description: "Graphing calculators aren't really plotting all points."
+---
+
+import Calc from "../../../src/pages/proj/graphing-calculator/calc";
+
+The calculator below lets you adjust some of the lower-level settings that usually aren't shown to the end-user, such as the values of $x$ to plug in into the function.
+
+<Calc />
