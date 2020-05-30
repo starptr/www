@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { create, all } from "mathjs";
-import Plot from "../../../components/Plot";
+
+import Plot from "../Plot";
 
 const MathJS = create(all, {});
 

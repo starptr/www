@@ -8,7 +8,7 @@ import SEO from "../../../components/seo";
 import Home from "../../../components/Home";
 import Blog from "../../../components/Blog";
 import { rhythm } from "../../../utils/typography";
-import Calc from "./calc";
+import Calculator from "../../../components/Calculator";
 
 type Data = {
 	site: {
@@ -31,7 +31,7 @@ const Index = (props: PageProps<Data>) => {
 	return (
 		<Layout location={props.location} title={siteTitle}>
 			<SEO title="Graphing Calculator" />
-			<Calc />
+			<Calculator />
 		</Layout>
 	);
 };
