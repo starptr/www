@@ -31,7 +31,7 @@ module.exports = {
 		{
 			resolve: `gatsby-source-filesystem`,
 			options: {
-				path: `${__dirname}/src/pages`,
+				path: `${__dirname}/src/pages/blog`,
 				name: `pages`,
 			},
 		},
@@ -40,14 +40,12 @@ module.exports = {
 			options: {
 				extensions: [`.mdx`, `.md`],
 				gatsbyRemarkPlugins: [
-					/*
 					{
 						resolve: `gatsby-remark-images`,
 						options: {
 							maxWidth: 590,
 						},
 					},
-					*/
 					{
 						resolve: `gatsby-remark-responsive-iframe`,
 						options: {

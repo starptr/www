@@ -4,7 +4,6 @@ const { createFilePath } = require(`gatsby-source-filesystem`);
 exports.onCreateNode = ({ node, actions, getNode }) => {
 	const { createNodeField } = actions;
 
-	/*
 	if (node.internal.type === `Mdx`) {
 		const relativeFilePath = createFilePath({ node, getNode });
 		createNodeField({
@@ -13,5 +12,4 @@ exports.onCreateNode = ({ node, actions, getNode }) => {
 			value: `/blog${relativeFilePath}`,
 		});
 	}
-	*/
 };
