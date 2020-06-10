@@ -1,7 +1,9 @@
 import React from "react";
-import Plot from "react-plotly.js";
+import Loadable from "@loadable/component"
 import { create, all } from "mathjs";
 const MathJS = create(all, {});
+
+const Plot = Loadable(() => import('react-plotly.js'));
 
 const Index = props => {
 	const xVals = MathJS.range(0, 7, 0.01).toArray();

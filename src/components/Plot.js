@@ -1,5 +1,7 @@
 import React from "react";
-import Plot from "react-plotly.js";
+import Loadable from "@loadable/component";
+
+const Plot = Loadable(() => import("react-plotly.js"));
 
 const MyPlot = props => {
 	return (
