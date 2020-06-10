@@ -6,7 +6,7 @@ description: "5-Star scale is too coarse, and 10-Star is too fine to be meaningf
 
 The human brain is not very good at conceptualizing large numbers and complicated proportions. For example, can you really imagine a $3\%$ chance of winning? Chances are (no pun intended) that you can't. Most people see "$3\%$ chance" and internally translate it to "close to not happening". Likewise, we see $98\%$ and think "close to certain". And when we see something like $42\%$, we think "it can either happen or not". This meme captures this idea:
 
-[![Every single event has a 50% chance of happening, because it either happens or it doesn't.](./probability_meme.jpg)](https://www.reddit.com/r/memes/comments/g8uugb/everything_either_happens_or_it_doesnt/)
+[![Every single event has a 50% chance of happening, because it either happens or it doesn't.](probability_meme.jpg)](https://www.reddit.com/r/memes/comments/g8uugb/everything_either_happens_or_it_doesnt/)
 
 A similar problem occurs with 10-Star rating scales. In too many cases are there inconsistencies in even just one reviewer; that is, among the subjects that they rate $7/10$ and $8/10$, for example, there are some $7/10$ subjects that they prefer over $8/10$. This makes the difference between $7/10$ and $8/10$ meaningless, and adds skepticism towards the difference between $6/10$ and $7/10$, and $8/10$ and $9/10$ ratings.
 
