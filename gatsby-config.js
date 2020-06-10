@@ -24,14 +24,6 @@ module.exports = {
 		{
 			resolve: `gatsby-source-filesystem`,
 			options: {
-				path: `${__dirname}/content/blog`,
-				name: `blog`,
-				ignore: [`**/\.hide`],
-			},
-		},
-		{
-			resolve: `gatsby-source-filesystem`,
-			options: {
 				path: `${__dirname}/content/assets`,
 				name: `assets`,
 			},
@@ -41,12 +33,14 @@ module.exports = {
 			options: {
 				extensions: [`.mdx`, `.md`],
 				gatsbyRemarkPlugins: [
+					/*
 					{
 						resolve: `gatsby-remark-images`,
 						options: {
 							maxWidth: 590,
 						},
 					},
+					*/
 					{
 						resolve: `gatsby-remark-responsive-iframe`,
 						options: {

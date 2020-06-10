@@ -1,0 +1,21 @@
+---
+title: content in src
+date: "2020-06-10T11:51:00"
+description: "eat freef"
+---
+
+import { graphql } from "gatsby";
+
+<h1>{props.data.site.siteMetadata.title}</h1>
+<p>{props.data.site.siteMetadata.description}</p>
+
+export const pageQuery = graphql`
+	query {
+		site {
+			siteMetadata {
+				description
+				title
+			}
+		}
+	}
+`;
