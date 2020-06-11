@@ -1,5 +1,5 @@
 import React from "react";
-import { Link, graphql } from "gatsby";
+import { Link, graphql, useStaticQuery } from "gatsby";
 import { MDXProvider } from "@mdx-js/react";
 import { MDXRenderer } from "gatsby-plugin-mdx";
 import "katex/dist/katex.min.css";
@@ -17,8 +17,28 @@ const blogAdjustComponent = child => {
 	}
 };
 
-const BlogPostTemplate = ({ data, pageContext, location, children }) => {
-	const post = children;
+const BlogPostTemplate = ({ pageContext, location, children }) => {
+	const data = useStaticQuery(graphql`
+		query BlogPost($slug: String!) {
+			site {
+				siteMetadata {
+					title
+				}
+			}
+			mdx(fields: { slug: { eq: $slug } }) {
+				id
+				excerpt(pruneLength: 160)
+				body
+				frontmatter {
+					title
+					date(formatString: "MMMM DD, YYYY")
+					description
+				}
+			}
+		}
+	`);
+
+	const post = data.mdx;
 	const siteTitle = data.site.siteMetadata.title;
 	const { previous, next } = pageContext;
 
@@ -110,13 +130,3 @@ const BlogPostTemplate = ({ data, pageContext, location, children }) => {
 };
 
 export default BlogPostTemplate;
-
-export const pageQuery = graphql`
-	query BlogPost {
-		site {
-			siteMetadata {
-				title
-			}
-		}
-	}
-`;
