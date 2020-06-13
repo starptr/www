@@ -1,10 +1,16 @@
 import React from "react";
 import { useStaticQuery, graphql } from "gatsby";
 
-import Link from "../components/Link";
+import Link from "./Link";
 import { rhythm, scale } from "../utils/typography";
 
-const Layout = ({ location, title, children }) => {
+type Args = {
+	location: any;
+	title?: string;
+	children: React.ReactNode;
+};
+
+const Layout: React.FC<Args> = ({ location, title, children }) => {
 	const data = useStaticQuery(graphql`
 		query {
 			site {
@@ -17,7 +23,6 @@ const Layout = ({ location, title, children }) => {
 
 	let layoutTitle = title || data.site.siteMetadata.title;
 
-	const rootPath = `${__PATH_PREFIX__}/`;
 	let header;
 
 	const tabs = [
