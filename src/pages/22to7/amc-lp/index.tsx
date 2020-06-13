@@ -20,7 +20,7 @@ const Index = (props: PageProps<Data>) => {
 
 	return (
 		<Layout location={props.location} title={siteTitle}>
-			<SEO title={title} />
+			<SEO title={title} description="Learn some cool math tricks." />
 			<h1>{title}</h1>
 			<p>
 				Welcome! Here, you will find the latest scheduling of <strong>{title}</strong> livestreams.
