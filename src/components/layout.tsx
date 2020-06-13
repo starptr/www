@@ -1,11 +1,12 @@
 import React from "react";
 import { useStaticQuery, graphql } from "gatsby";
+import type { WindowLocation } from "@reach/router";
 
 import Link from "./Link";
 import { rhythm, scale } from "../utils/typography";
 
 type Args = {
-	location: any;
+	location: WindowLocation<{}>;
 	title?: string;
 	children: React.ReactNode;
 };
@@ -23,8 +24,6 @@ const Layout: React.FC<Args> = ({ location, title, children }) => {
 
 	let layoutTitle = title || data.site.siteMetadata.title;
 
-	let header;
-
 	const tabs = [
 		{
 			title: layoutTitle,
@@ -36,7 +35,7 @@ const Layout: React.FC<Args> = ({ location, title, children }) => {
 		},
 	];
 
-	header = (
+	let header = (
 		<div
 			style={{
 				display: "flex",
