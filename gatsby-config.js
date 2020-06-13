@@ -12,7 +12,7 @@ module.exports = {
 		blog: {
 			title: `Post[]`,
 		},
-		description: `Low quality thought dump from a local shower near you!`,
+		description: `Yuto's island of things.`,
 		siteUrl: `https://starptr.netlify.app/`,
 		social: {
 			twitter: `starptr`,

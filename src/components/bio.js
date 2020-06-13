@@ -25,7 +25,6 @@ const Bio = props => {
 				siteMetadata {
 					author {
 						name
-						summary
 					}
 					social {
 						twitter
@@ -66,7 +65,7 @@ const Bio = props => {
 				}}
 			>
 				Streaming direct thought dumps from{" "}
-				<strong>{author.name}</strong>. {author.summary}
+				<strong>{author.name}</strong>.
 				<br />
 				Follow me on{" "}
 				<a href={`https://twitter.com/${social.twitter}`}>

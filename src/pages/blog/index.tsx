@@ -17,6 +17,9 @@ type Data = {
 			blog: {
 				title: string;
 			};
+			author: {
+				name: string;
+			};
 		};
 	};
 	allMdx: {
@@ -40,10 +43,11 @@ const BlogIndex = ({ data, location }: PageProps<Data>) => {
 	const siteTitle = data.site.siteMetadata.title;
 	const posts = data.allMdx.edges;
 	const blogTitle = data.site.siteMetadata.blog.title;
+	const author = data.site.siteMetadata.author.name;
 
 	return (
 		<Layout location={location} title={siteTitle}>
-			<SEO title="All posts" />
+			<SEO title="All posts" description={`Streaming direct thought dumps from ${author}.`} />
 			<Bio
 				style={{
 					marginTop: rhythm(1.25),
@@ -75,9 +79,7 @@ const BlogIndex = ({ data, location }: PageProps<Data>) => {
 						<section>
 							<p
 								dangerouslySetInnerHTML={{
-									__html:
-										node.frontmatter.description ||
-										node.excerpt,
+									__html: node.frontmatter.description || node.excerpt,
 								}}
 							/>
 						</section>
@@ -97,6 +99,9 @@ export const pageQuery = graphql`
 				title
 				blog {
 					title
+				}
+				author {
+					name
 				}
 			}
 		}
