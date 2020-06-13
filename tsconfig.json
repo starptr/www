@@ -1,0 +1,10 @@
+{
+	"include": ["./src/**/*", "./src/custom.d.ts"],
+	"exclude": ["node_modules"],
+	"compilerOptions": {
+		"allowJs": true,
+		"jsx": "react",
+		"strict": true,
+		"esModuleInterop": true,
+	}
+}
