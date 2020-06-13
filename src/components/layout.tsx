@@ -6,7 +6,7 @@ import Link from "./Link";
 import { rhythm, scale } from "../utils/typography";
 
 type Args = {
-	location: WindowLocation<{}>;
+	location: any;
 	title?: string;
 	children: React.ReactNode;
 };
