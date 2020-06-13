@@ -30,7 +30,7 @@ const Index = (props: PageProps<Data>) => {
 	const name = props.data.site.siteMetadata.author.name;
 	const blogTitle = props.data.site.siteMetadata.blog.title;
 	return (
-		<Layout location={props.location} title={siteTitle}>
+		<Layout location={props.location}>
 			<SEO title="Home" />
 			<p>
 				👋Hi!! Welcome to <Home />. I'm <strong>{name}</strong>. I like to make things. This page lists some things I've made.

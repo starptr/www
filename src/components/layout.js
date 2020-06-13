@@ -1,15 +1,28 @@
 import React from "react";
+import { useStaticQuery, graphql } from "gatsby";
 
 import Link from "../components/Link";
 import { rhythm, scale } from "../utils/typography";
 
 const Layout = ({ location, title, children }) => {
+	const data = useStaticQuery(graphql`
+		query {
+			site {
+				siteMetadata {
+					title
+				}
+			}
+		}
+	`);
+
+	let layoutTitle = title || data.site.siteMetadata.title;
+
 	const rootPath = `${__PATH_PREFIX__}/`;
 	let header;
 
 	const tabs = [
 		{
-			title,
+			title: layoutTitle,
 			to: `/`,
 		},
 		{
@@ -48,9 +61,10 @@ const Layout = ({ location, title, children }) => {
 								style: {
 									color: `inherit`,
 									marginBottom: 0,
-									...(!isFirst && isHere && {
-										textDecoration: `underline`,
-									}),
+									...(!isFirst &&
+										isHere && {
+											textDecoration: `underline`,
+										}),
 								},
 								to: tab.to,
 							},
@@ -119,7 +133,7 @@ const Layout = ({ location, title, children }) => {
 					}}
 					to={`/`}
 				>
-					{title}
+					{layoutTitle}
 				</Link>
 			</h3>
 		);
