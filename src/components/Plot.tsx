@@ -3,7 +3,7 @@ import Loadable from "@loadable/component";
 
 const Plot = Loadable(() => import("react-plotly.js"));
 
-const MyPlot = props => {
+const MyPlot = (props: any) => {
 	return (
 		<Plot
 			data={props.data}
@@ -17,6 +17,7 @@ const MyPlot = props => {
 				...props.layout,
 			}}
 			config={props.config}
+			style={props.style}
 		/>
 	);
 };
