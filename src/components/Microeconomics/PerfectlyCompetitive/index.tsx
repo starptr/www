@@ -18,7 +18,9 @@ interface MarketEquations {
 	D: string;
 }
 
-interface FirmEquations {}
+interface FirmEquations {
+	MC: string;
+}
 
 interface AllEquations {
 	mkt: MarketEquations;
@@ -32,7 +34,7 @@ interface CoordinateGraph {
 
 interface AllCoordinateGraphs {
 	mkt: (CoordinateGraph | null)[];
-	firm: CoordinateGraph[];
+	firm: (CoordinateGraph | null)[];
 }
 
 const eqToGraph = (eqs: MarketEquations | FirmEquations, xVals: GenNumArr): (CoordinateGraph | null)[] => {
@@ -54,6 +56,21 @@ const eqToGraph = (eqs: MarketEquations | FirmEquations, xVals: GenNumArr): (Coo
 	});
 };
 
+const graphsToData = (graphs: (CoordinateGraph | null)[], xVals: GenNumArr): any[] => {
+	return graphs.map(graph => {
+		if (!graph) return null;
+		else {
+			return {
+				x: xVals,
+				y: graph.yVals,
+				type: "scatter",
+				mode: "lines",
+				name: graph.name,
+			};
+		}
+	});
+};
+
 const Perfekt = (props: any) => {
 	const [xStart, setXStart] = useState(-5);
 	const [xEnd, setXEnd] = useState(5);
@@ -68,10 +85,12 @@ const Perfekt = (props: any) => {
 
 	const [eqs, setEqs] = useState<AllEquations>({
 		mkt: {
-			S: "x+100",
-			D: "-x+1100",
+			S: "0.1x+10",
+			D: "-0.1x+110",
 		},
-		firm: {},
+		firm: {
+			MC: "1.667x - 76.667 + 1600/(x+10)",
+		},
 	});
 
 	/*
@@ -83,10 +102,12 @@ const Perfekt = (props: any) => {
 
 	let graphs: AllCoordinateGraphs = { mkt: [], firm: [] };
 
-	if (!MathJS.range) return <div>Why</div>;
+	if (!MathJS.range) return <div>If this is reached, MathJS has not been populated.</div>;
 	let xVals: GenNumArr = MathJS.range(bounds.mktQ[0], bounds.mktQ[1], 1, true).toArray();
+	let xValsFirm: GenNumArr = MathJS.range(bounds.firmQ[0], bounds.firmQ[1], 1, true).toArray();
 
 	graphs.mkt = eqToGraph(eqs.mkt, xVals);
+	graphs.firm = eqToGraph(eqs.firm, xValsFirm);
 
 	return (
 		<div>
@@ -119,36 +140,57 @@ const Perfekt = (props: any) => {
 					</label>
 				</p>
 			</form>
-			<Plot
-				data={[
-					...graphs.mkt.map(graph => {
-						if (!graph) return null;
-						else {
-							return {
-								x: xVals,
-								y: graph.yVals,
-								type: "scatter",
-								mode: "lines",
-								name: graph.name,
-							};
-						}
-					}),
-				]}
-				layout={{
-					xaxis: {
-						title: {
-							text: "Q",
-						},
-					},
-					yaxis: {
-						title: {
-							text: "P",
-						},
-						scaleanchor: "x",
-						scaleratio: 1,
-					},
+			<div
+				style={{
+					display: "flex",
+					flexDirection: "row",
 				}}
-			/>
+			>
+				<Plot
+					data={graphsToData(graphs.mkt, xVals)}
+					layout={{
+						xaxis: {
+							title: {
+								text: "Q",
+							},
+							range: [0, 1000],
+						},
+						yaxis: {
+							title: {
+								text: "P",
+							},
+							scaleanchor: "x",
+							scaleratio: 10,
+							range: [0, 120],
+						},
+					}}
+					style={{
+						width: "100%",
+					}}
+				/>
+				<Plot
+					data={graphsToData(graphs.firm, xVals)}
+					layout={{
+						xaxis: {
+							title: {
+								text: "Q",
+							},
+							range: [0, 100],
+						},
+						yaxis: {
+							title: {
+								text: "P",
+							},
+							scaleanchor: "x",
+							scaleratio: 1,
+							range: [0, 120],
+						},
+					}}
+					style={{
+						width: "100%",
+					}}
+				/>
+			</div>
 		</div>
 	);
 };
