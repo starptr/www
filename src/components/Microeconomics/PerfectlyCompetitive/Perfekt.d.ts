@@ -2,7 +2,7 @@ import type { Matrix } from "mathjs";
 import Perfekt from ".";
 
 export module Perfekt {
-	type GenNumArr = number[] | Matrix | number[][];
+	type GenNumArr = (number | null)[] | Matrix | number[][];
 
 	interface Bounds {
 		mktQ: [number, number, number?];

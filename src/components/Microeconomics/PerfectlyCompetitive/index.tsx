@@ -18,8 +18,17 @@ const discreteIntegralFromZero = (vals: Perfekt.GenNumArr, isAvg: boolean = fals
 	let cumulativeSum = 0;
 	return vals.map((x: number, index: number) => {
 		cumulativeSum += x;
-		return isAvg ? cumulativeSum / (index + 1) : cumulativeSum;
+		return isAvg ? (index === 0 ? null : cumulativeSum / index) : cumulativeSum;
 	});
+};
+
+const harmonicSequence = (initialVal: number, length: number): (number | null)[] => {
+	let dummyArr = new Array(length).fill(0);
+	return dummyArr.map((dummy: number, index: number) => (index === 0 ? null : initialVal / index));
+};
+
+const smashArrays = (array1: any[], array2: any[], operation: (value1: any, value2: any) => any): any[] => {
+	return array1.map((val: any, index: number) => (!val && !array2[index] ? null : operation(val, array2[index])));
 };
 
 const graphToData = (graph: Perfekt.CoordinateGraph, xVals: Perfekt.GenNumArr): Perfekt.Data => ({
@@ -31,12 +40,6 @@ const graphToData = (graph: Perfekt.CoordinateGraph, xVals: Perfekt.GenNumArr): 
 });
 
 const PerfektViz = (props: any) => {
-	const [xStart, setXStart] = useState(-5);
-	const [xEnd, setXEnd] = useState(5);
-	const [xDelta, setXDelta] = useState(1);
-
-	const [eq, setEq] = useState("sin(x)");
-
 	const [bounds, setBounds] = useState<Perfekt.Bounds>({
 		mktQ: [0, 1000],
 		firmQ: [0, 100],
@@ -49,7 +52,7 @@ const PerfektViz = (props: any) => {
 		},
 		firm: {
 			//MC: "1.667x - 76.667 + 1600/(x+10)",
-			MC: "1.5477x+1473.47/(x+4.33769)-54.6434",
+			MC: "8.4*(4.4(0.134x+4.7)^2-12(0.134x+4.7)+50)/(3.2(0.134x+4.7)-13.14)-125",
 		},
 	});
 
@@ -84,6 +87,11 @@ const PerfektViz = (props: any) => {
 		graphs.firm.MC = eqCompiledToGraph("MC", mc_compiled, xValsFirm);
 		//graphs.firm.TC = pricesToGraph("TC", discreteIntegralFromZero(graphs.firm.MC.yVals));
 		graphs.firm.ATC = pricesToGraph("ATC", discreteIntegralFromZero(graphs.firm.MC.yVals, true));
+		graphs.firm.AFC = pricesToGraph("AFC", harmonicSequence(graphs.firm.MC.yVals[0], graphs.firm.MC.yVals.length));
+		graphs.firm.AVC = pricesToGraph(
+			"AVC",
+			smashArrays(graphs.firm.ATC.yVals, graphs.firm.AFC.yVals, (total, fixed) => total - fixed)
+		);
 	} catch (e) {
 		console.error(e);
 	}
