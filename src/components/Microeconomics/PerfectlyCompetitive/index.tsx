@@ -39,30 +39,7 @@ const graphToData = (graph: Perfekt.CoordinateGraph, xVals: Perfekt.GenNumArr): 
 	name: graph.name,
 });
 
-const PerfektViz = (props: any) => {
-	const [bounds, setBounds] = useState<Perfekt.Bounds>({
-		mktQ: [0, 1000],
-		firmQ: [0, 100],
-	});
-
-	const [eqs, setEqs] = useState<Perfekt.AllEquations>({
-		mkt: {
-			S: "0.1x+10",
-			D: "-0.1x+110",
-		},
-		firm: {
-			//MC: "1.667x - 76.667 + 1600/(x+10)",
-			MC: "8.4*(4.4(0.134x+4.7)^2-12(0.134x+4.7)+50)/(3.2(0.134x+4.7)-13.14)-125",
-		},
-	});
-
-	/*
-	//these were in try-catch block
-		xVals = range(xStart, xEnd, xDelta, true).toArray();
-		const expr = compile(eq);
-		yVals = xVals.map(x => expr.evaluate({ x: x }));
-	*/
-
+const rawComputation = (bounds: Perfekt.Bounds, eqs: Perfekt.AllEquations): Perfekt.AllData => {
 	let graphs: Perfekt.AllCoordinateGraphs = { mkt: {}, firm: {} };
 	let xVals: Perfekt.GenNumArr = range(bounds.mktQ[0], bounds.mktQ[1], 1, true).toArray();
 	let xValsFirm: Perfekt.GenNumArr = range(bounds.firmQ[0], bounds.firmQ[1], 1, true).toArray();
@@ -96,6 +73,35 @@ const PerfektViz = (props: any) => {
 		console.error(e);
 	}
 	data.firm = Object.entries(graphs.firm).map(([name, graph]) => (graph ? graphToData(graph, xVals) : null));
+
+	return data;
+};
+
+const PerfektViz = (props: any) => {
+	const [bounds, setBounds] = useState<Perfekt.Bounds>({
+		mktQ: [0, 1000],
+		firmQ: [0, 100],
+	});
+
+	const [eqs, setEqs] = useState<Perfekt.AllEquations>({
+		mkt: {
+			S: "0.1x+10",
+			D: "-0.1x+110",
+		},
+		firm: {
+			//MC: "1.667x - 76.667 + 1600/(x+10)",
+			MC: "8.4*(4.4(0.134x+4.7)^2-12(0.134x+4.7)+50)/(3.2(0.134x+4.7)-13.14)-125",
+		},
+	});
+
+	/*
+	//these were in try-catch block
+		xVals = range(xStart, xEnd, xDelta, true).toArray();
+		const expr = compile(eq);
+		yVals = xVals.map(x => expr.evaluate({ x: x }));
+	*/
+
+	let data: Perfekt.AllData = rawComputation(bounds, eqs);
 
 	return (
 		<div>
