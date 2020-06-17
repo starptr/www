@@ -42,7 +42,10 @@ const Index = (props: PageProps<Data>) => {
 				Heads up! The info below may be old. If there is any inconsistency between the calendar above and the rest of the page, the
 				calendar is probably right.
 			</p>
-			<p>Join the call: <a href="https://meet.google.com/eyb-qyvq-nvk">Google Meet (eyb-qyvq-nvk)</a></p>
+			<p>I encourage you all to try every problem before the streams :).</p>
+			<p>
+				Join the call: <a href="https://meet.google.com/eyb-qyvq-nvk">Google Meet (eyb-qyvq-nvk)</a>
+			</p>
 			<table>
 				<thead>
 					<tr>
@@ -62,6 +65,12 @@ const Index = (props: PageProps<Data>) => {
 							<a href="https://artofproblemsolving.com/wiki/index.php/2000_AMC_10_Problems">AMC 10 2000</a>
 						</td>
 						<td>June 16</td>
+					</tr>
+					<tr>
+						<td>
+							<a href="https://artofproblemsolving.com/wiki/index.php/2001_AMC_10_Problems">AMC 10 2001</a> #1-15
+						</td>
+						<td>June 23</td>
 					</tr>
 				</tbody>
 			</table>
