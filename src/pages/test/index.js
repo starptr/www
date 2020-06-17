@@ -1,9 +1,9 @@
 import React from "react";
-import Loadable from "@loadable/component"
+import Loadable from "@loadable/component";
 import { create, all } from "mathjs";
 const MathJS = create(all, {});
 
-const Plot = Loadable(() => import('react-plotly.js'));
+const Plot = Loadable(() => import("react-plotly.js"));
 
 const Index = props => {
 	const xVals = MathJS.range(0, 7, 0.01).toArray();
@@ -13,7 +13,10 @@ const Index = props => {
 			data={[
 				{
 					x: xVals,
-					y: xVals.map(x => x / 10),
+					y: xVals.map(x => {
+						if (x <= 2) return null;
+						else return x / 10;
+					}),
 					type: "scatter",
 					mode: "lines",
 					marker: { color: "blue" },
@@ -40,7 +43,7 @@ const Index = props => {
 					visible: true,
 					color: "green",
 					title: {
-						text: "xaxis title here"
+						text: "xaxis title here",
 					},
 					rangemode: "nonnegative",
 				},
