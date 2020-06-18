@@ -33,7 +33,7 @@ const Index = (props: PageProps<Data>) => {
 		<Layout location={props.location}>
 			<SEO title="Home" />
 			<p>
-				👋Hi!! Welcome to <Home />. I'm <strong>{name}</strong>. I like to make things. This page lists some things I've made.
+				👋Hi!! Welcome to <Home />. I'm <strong>{name}</strong>, and since I like to make things, this page lists some things I've made.
 			</p>
 			<p>Some interesting things I'm actively working on:</p>
 			<ul>
