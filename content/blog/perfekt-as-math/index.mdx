@@ -1,0 +1,41 @@
+---
+title: "Perfectly Competitive Markets as Math"
+date: "2020-06-13T18:28:00"
+description: "Graphing calculators aren't really plotting all points."
+---
+
+import Perfekt from "../../../src/components/Microeconomics/PerfectlyCompetitive";
+
+Perfect Competition, or as I like to abbreviate it, **Perfekt**, is your standard paired Supply vs Demand market graph along with a firm graph where Marginal Revenue = Demand = Average Revenue = Price.
+
+You can interact with it here:
+
+<Perfekt />
+
+## Why?
+
+As I was watching [Matt Pedlow's AP Microeconomics series](https://www.youtube.com/playlist?list=PLoGgviqq4847-M3z5bOgGoX1fWVshEsLL) for this year's exam, I noticed that we can actually define many of the relationships between quantity and price using discrete calculus, something that sounds fancier than it really is. So I thought it would be interesting to talk about how that would span out.
+
+Also, it's always nice to be able to have an interactive visualization of things, and I haven't seen anything for microeconomics anywhere else.
+
+## Mathematical Formalization
+
+The definition of Marginal Cost ($MC$) is the difference in the Total Cost ($TC$) of producing the currenth $n$th good minus the $TC$ of producing the last good, $(n-1)$th. Using notation from my post on [discrete derivatives](/blog/discrete-derivative), we can define $MC$ as so:
+
+$$
+\begin{aligned}
+MC(q) &\coloneqq TC(q) - TC(q - 1) \\
+	&\coloneqq \Delta TC(q-1)
+\end{aligned}
+$$
+
+By the way, both $MC$ and $TC$ map $Q \to P$, where $Q$ is the set of nonnegative integers,[^2] and $P$ is the set of reals with a unit of economic value, such as dollars.[^1]
+
+We can define Average Total Cost ($ATC$) similarly, but beware that since it is calculated with respect to the quantity of goods, its domain is actually $Q - \{0\}$. That is, it doesn't make sense to talk about the average cost per good when no goods have been produced. So, $ATC \colon Q-\{0\} \to P$, and
+
+$$
+ATC(q) \coloneqq \frac{TC(q)}{q}
+$$
+
+[^2]: The visualization connects points with consecutive quantities with a line segment, which is why the curves look continuous.
+[^1]: Note that this definition is not formal.
