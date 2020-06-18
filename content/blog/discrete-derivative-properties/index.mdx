@@ -1,7 +1,7 @@
 ---
-title: "Discrete Derivatives"
+title: "Discrete Calculus: Derivative Rules"
 date: "2020-06-17T18:42:00"
-description: "Product rule, quotient rule, chain rule, etc. Except chonkily."
+description: "Product rule and quotient rule. Except chonkily."
 ---
 
 Now that we know what [discrete derivates](/blog/discrete-derivate) are, let's see if we can derive (no pun intended) similar rules found in regular calculus.
@@ -11,6 +11,26 @@ Now that we know what [discrete derivates](/blog/discrete-derivate) are, let's s
 $$
 \begin{aligned}
 \Delta_h [fg](n)
-	&= \frac{[fg](n+1) - [fg](n)}{h}
+	&= \frac{[fg](n+h) - [fg](n)}{h} \\
+	&= \frac{f(n+h)g(n+h) - f(n)g(n)}{h} \\
+	&= \frac{f(n+h)g(n+h) - f(n+h)g(n) + f(n+h)g(n) - f(n)g(n)}{h} \\
+	&= \frac{f(n+h)(g(n+h) - g(n)) + g(n)(f(n+h)-f(n))}{h} \\
+	&= f(n+h) \frac{g(n+h) - g(n)}{h} + g(n) \frac{f(n+h) - f(n)}{h} \\
+	&= f(n+h) \Delta_h g(n) + g(n) \Delta_h f(n) \\
+\end{aligned}
+$$
+
+## Quotient Rule
+
+$$
+\begin{aligned}
+\Delta_h \left[\frac{f}{g}\right](n)
+	&= \frac{\left[\frac{f}{g}\right](n+h) - \left[\frac{f}{g}\right](n)}{h} \\
+	&= \frac{\frac{f(n+h)}{g(n+h)} - \frac{f(n)}{g(n)}}{h} \\
+	&= \frac{1}{h} \frac{f(n+h)g(n) - f(n)g(n+h)}{g(n+h)g(n)} \\
+	&= \frac{1}{g(n+h)g(n)} \frac{f(n+h)g(n) - f(n)g(n) + f(n)g(n) - f(n)g(n+h)}{h} \\
+	&= \frac{1}{g(n+h)g(n)} \frac{g(n)(f(n+h) - f(n)) + f(n)(g(n) - g(n+h))}{h} \\
+	&= \frac{1}{g(n+h)g(n)} \left(g(n) \frac{f(n+h) - f(n)}{h} - f(n) \frac{g(n+h) - g(n)}{h}\right) \\
+	&= \frac{g(n) \Delta_h f(n) - f(n) \Delta_h g(n)}{g(n+h)g(n)} \\
 \end{aligned}
 $$
