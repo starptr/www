@@ -2,6 +2,8 @@ import React from "react";
 import Loadable from "@loadable/component";
 import { create, all } from "mathjs";
 import Thing, { someData } from "./thing";
+import "katex/dist/katex.min.css";
+import { InlineMath, BlockMath } from "react-katex";
 const MathJS = create(all, {});
 
 const Plot = Loadable(() => import("react-plotly.js"));
@@ -11,6 +13,7 @@ const Index = props => {
 
 	return (
 		<>
+			<InlineMath>\int_0^\infty x^2 dx</InlineMath>
 			<div>The thing component:</div>
 			<Thing />
 			<div>The data from thing component:</div>
