@@ -4,13 +4,14 @@ import type { Matrix, EvalFunction } from "mathjs";
 
 import Plot from "../../Plot";
 import type { Perfekt } from "./Perfekt";
+import TeX from "../../Katex/TeX";
 
 const pricesToGraph = (name: string, yVals: Perfekt.GenNumArr): Perfekt.CoordinateGraph => ({ name, yVals });
 
 const eqCompiledToGraph = (name: string, eq_compiled: EvalFunction, xVals: Perfekt.GenNumArr): Perfekt.CoordinateGraph => {
 	return pricesToGraph(
 		name,
-		xVals.map((x: number) => eq_compiled.evaluate({ x }))
+		xVals.map((x: number) => eq_compiled.evaluate({ q: x }))
 	);
 };
 
@@ -81,16 +82,17 @@ const PerfektViz = (props: any) => {
 	const [bounds, setBounds] = useState<Perfekt.Bounds>({
 		mktQ: [0, 1000],
 		firmQ: [0, 100],
+		P: [0, 120],
 	});
 
 	const [eqs, setEqs] = useState<Perfekt.AllEquations>({
 		mkt: {
-			S: "0.1x+10",
-			D: "-0.1x+110",
+			S: "0.1q+10",
+			D: "-0.1q+110",
 		},
 		firm: {
 			//MC: "1.667x - 76.667 + 1600/(x+10)",
-			MC: "8.4*(4.4(0.134x+4.7)^2-12(0.134x+4.7)+50)/(3.2(0.134x+4.7)-13.14)-125",
+			MC: "8.4*(4.4(0.134q+4.7)^2-12(0.134q+4.7)+50)/(3.2(0.134q+4.7)-13.14)-125",
 		},
 	});
 
@@ -108,24 +110,25 @@ const PerfektViz = (props: any) => {
 			<form>
 				<p>
 					<label>
-						Supply:
+						<TeX>S(q)=</TeX>{" "}
 						<input type="text" value={eqs.mkt.S} onChange={e => setEqs({ ...eqs, mkt: { ...eqs.mkt, S: e.target.value } })} />
 					</label>
 				</p>
 				<p>
 					<label>
-						Demand:
+						<TeX>D(q)=</TeX>{" "}
 						<input type="text" value={eqs.mkt.D} onChange={e => setEqs({ ...eqs, mkt: { ...eqs.mkt, D: e.target.value } })} />
 					</label>
 				</p>
 				<p>
 					<label>
-						Market Quantity upper bound:
+						<TeX>{"Q_{mkt} = [0,"}</TeX>{" "}
 						<input
 							type="number"
 							value={bounds.mktQ[1]}
 							onChange={e => setBounds({ ...bounds, mktQ: [bounds.mktQ[0], parseInt(e.target.value)] })}
 						/>
+						<TeX>]</TeX>
 					</label>
 				</p>
 			</form>
@@ -142,7 +145,7 @@ const PerfektViz = (props: any) => {
 							title: {
 								text: "Q",
 							},
-							range: [0, 1000],
+							range: [bounds.mktQ[0], bounds.mktQ[1]],
 						},
 						yaxis: {
 							title: {
@@ -150,7 +153,7 @@ const PerfektViz = (props: any) => {
 							},
 							scaleanchor: "x",
 							scaleratio: 10,
-							range: [0, 120],
+							range: [bounds.P[0], bounds.P[1]],
 						},
 					}}
 					style={{
@@ -164,7 +167,7 @@ const PerfektViz = (props: any) => {
 							title: {
 								text: "Q",
 							},
-							range: [0, 100],
+							range: [bounds.firmQ[0], bounds.firmQ[1]],
 						},
 						yaxis: {
 							title: {
@@ -172,7 +175,7 @@ const PerfektViz = (props: any) => {
 							},
 							scaleanchor: "x",
 							scaleratio: 1,
-							range: [0, 120],
+							range: [bounds.P[0], bounds.P[1]],
 						},
 					}}
 					style={{

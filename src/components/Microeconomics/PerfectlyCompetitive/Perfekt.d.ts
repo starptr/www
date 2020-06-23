@@ -7,6 +7,7 @@ export module Perfekt {
 	interface Bounds {
 		mktQ: [number, number, number?];
 		firmQ: [number, number, number?];
+		P: [number, number, number?];
 	}
 
 	interface MarketEquations {
