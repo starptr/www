@@ -9,7 +9,6 @@
   },
   "dependencies": {
     "@loadable/component": "^5.12.0",
-    "@matejmazur/react-katex": "^3.0.2",
     "@mdx-js/mdx": "^1.6.1",
     "@mdx-js/react": "^1.6.1",
     "@types/react-plotly.js": "^2.2.4",
@@ -39,7 +38,6 @@
     "react": "^16.12.0",
     "react-dom": "^16.12.0",
     "react-helmet": "^5.2.1",
-    "react-katex": "^2.0.2",
     "react-plotly.js": "^2.4.0",
     "react-typography": "^0.16.19",
     "typeface-merriweather": "0.0.72",
