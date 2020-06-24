@@ -50,27 +50,35 @@ const Index = (props: PageProps<Data>) => {
 				<thead>
 					<tr>
 						<td>Homework</td>
-						<td>By Date</td>
+						<td>By Date/Recording</td>
 					</tr>
 				</thead>
 				<tbody>
 					<tr>
 						<td>
-							<p style={{ color: "lightgray", marginBottom: 0 }}>None</p>
+							<a href="https://artofproblemsolving.com/wiki/index.php/2010_AMC_8">AMC 8 2010</a>
 						</td>
-						<td>June 8</td>
+						<td>June 8 (N/A)</td>
 					</tr>
 					<tr>
 						<td>
 							<a href="https://artofproblemsolving.com/wiki/index.php/2000_AMC_10_Problems">AMC 10 2000</a>
 						</td>
-						<td>June 16</td>
+						<td>June 16 (N/A)</td>
 					</tr>
 					<tr>
 						<td>
 							<a href="https://artofproblemsolving.com/wiki/index.php/2001_AMC_10_Problems">AMC 10 2001</a> #1-15
 						</td>
-						<td>June 23</td>
+						<td>
+							<a href="https://www.youtube.com/watch?v=7hBShNzldvc">June 23</a>
+						</td>
+					</tr>
+					<tr>
+						<td>
+							<a href="https://artofproblemsolving.com/wiki/index.php/2001_AMC_10_Problems">AMC 10 2001</a> #16-25
+						</td>
+						<td>June 30</td>
 					</tr>
 				</tbody>
 			</table>
