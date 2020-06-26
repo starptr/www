@@ -57,6 +57,8 @@ $$
 
 We can establish a few things with the final equation, $\frac{df}{dx} = \lim_{h \to 0} \frac{\Delta_h f(x)}{\Delta_h I(0)}$. Firstly, since $\lim$ doesn't distribute, we can't directly define $df$ or $dx$ with $\Delta_h f$ or $\Delta_h x$. That is, the differential operator, $d$, inherently compares the change in rate of multiple functions. Therefore, it makes sense to talk about $\frac{df}{dx}$, but not $df$.[^1]
 
+[^1]: Of course, you can always be working in a system that [explicitly defines differentials](https://en.wikipedia.org/wiki/Differential_of_a_function#Definition).
+
 Secondly, we can have an informal intuition about what $df$ and $dx$ _really_ means. $df$ is associated with $\Delta_h f(x)$ and $dx$ is associated with $\Delta_h I(0) = h$ as $h \to 0$.
 
 Lastly, we can define the "discrete derivative" as when $h=1$, leading to
@@ -71,5 +73,3 @@ $$
 $$
 
 Interestingly, for discrete derivatives, we don't need a "denominator" in our differential expression.
-
-[^1]: Of course, you can always be working in a system that [explicitly defines differentials](https://en.wikipedia.org/wiki/Differential_of_a_function#Definition).
