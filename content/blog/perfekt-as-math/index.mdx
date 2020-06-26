@@ -12,6 +12,36 @@ You can interact with it here:
 
 <Perfekt />
 
+## Definitions
+
+$C_S = S(0)$ is the intersection between $S$ and the y-axis.
+
+$C_D = D(0)$ is the intersection between $D$ and the y-axis.
+
+$C_{MC}$ is an arbitrary constant that shifts $MC$ up or down.
+
+$p_{mkt}$ is the market price.
+
+$p_{eq}$ is the profit-maximizing price.
+
+$p_{min}$ is the minimum of $AVC$.
+
+## Your $MC$ function is awfully complicated!!
+
+Yup, I was having trouble finding a decent function such that all of the cool things like the intersection between $P$ and $ATC$ and $P_{mkt}$ and $AVC$, so I asked Taiga to engineer one using <a href="https://www.desmos.com/calculator/rsukldgnp8">Desmos</a>:
+
+<iframe src="https://www.desmos.com/calculator/rsukldgnp8?embed" width="500px" height="500px" style="border: 1px solid #ccc" frameborder={0}></iframe>
+
+The final function is very cursed:
+
+$$
+MC(q) = \frac{4.4(0.134q + 4.7)^2 - 12(0.134q + 4.7) + 50}{3.2(0.134q + 4.7) - 13.14} 8.4 - 125
+$$
+
+### Thought Process
+
+The equation was written so that it could be manipulated as easily as possible. We already knew the general shape was going to have a sharp descent from the positive y-axis, and then slowly "climb up". The "climb up" part could be approximated by a function that has a slant asymptote. Therefore, we began with a rational function with a quotient whose degree was 1 for a nice linear asymptote. This is why the numerator looks like a quadratic function (think of $0.134q + 4.7$ as $X$) and the denominator looks linear. Then, to perform linear transformations, we replaced $X$ with $mq + b$ for horizontal stretching/squishing and shifting and took the entire function and replaced it with $MR + B$ for vertical stretching/squishing and shifting.
+
 ## Why?
 
 As I was watching [Matt Pedlow's AP Microeconomics series](https://www.youtube.com/playlist?list=PLoGgviqq4847-M3z5bOgGoX1fWVshEsLL) for this year's exam, I noticed that we can actually define many of the relationships between quantity and price using discrete calculus. So I thought it would be interesting to talk about how that would span out.
@@ -25,17 +55,71 @@ The definition of Marginal Cost ($MC$) is the difference in the Total Cost ($TC$
 $$
 \begin{aligned}
 MC(q) &\coloneqq TC(q) - TC(q - 1) \\
-	&\coloneqq \Delta TC(q-1)
+	&= \Delta TC(q-1)
 \end{aligned}
 $$
 
-By the way, both $MC$ and $TC$ map $Q \to P$, where $Q$ is the set of nonnegative integers,[^2] and $P$ is the set of reals with a unit of economic value, such as dollars.[^1]
+By the way, both $MC$ and $TC$ map $Q \to P$, where $Q$ is the set of nonnegative integers,[^1] and $P$ is the set of reals with a unit of economic value, such as dollars.[^2] (In the app above, $Q$ has a different meaning: the domain that will be plotted in the graph.)
+
+[^1]: The visualization connects points with consecutive quantities with a line segment, which is why the curves look continuous.
+[^2]: Note that this definition is not formal.
 
 We can define Average Total Cost ($ATC$) similarly, but beware that since it is calculated with respect to the quantity of goods, its domain is actually $Q - \{0\}$. That is, it doesn't make sense to talk about the average cost per good when no goods have been produced. So, $ATC \colon Q-\{0\} \to P$, and
 
 $$
-ATC(q) \coloneqq \frac{TC(q)}{q}
+\begin{aligned}
+ATC(q) &\coloneqq \frac{TC(q)}{q} \\
+q \cdot ATC(q) &= TC(q) \\
+\Delta [q \cdot ATC](q) &= \Delta TC(q) \\
+q \Delta ATC(q) &= MC(q + 1) \\
+MC(q) &= (q + 1) \Delta ATC(q + 1) \\
+\end{aligned}
 $$
 
-[^2]: The visualization connects points with consecutive quantities with a line segment, which is why the curves look continuous.
-[^1]: Note that this definition is not formal.
+## Market Price
+
+Since algebraically finding the market price is hard, this approximates by finding the closest quantity $q_{mkt}$ such that
+
+$$
+p_{mkt} \coloneqq S(q_{mkt}) = D(q_{mkt}).
+$$
+
+And if
+
+$$
+p_{eq} \coloneqq MC(q_{eq}) = ATC(q_{eq})
+$$
+
+is close enough to $p_{mkt}$, about $1$ unit, then we'll say the firm is making _approximately normal profit_.
+
+Normally, the firm tries to produce at the price $p_c = MR(q_c) = MC(q_c)$. For **Perfekt** firms, $MR(q) = p_{mkt}$; that is, they are price takers. So,
+
+$$
+p_c = p_{mkt} = MC(q_c).
+$$
+
+We can compare $p_{eq}$ and $p_c$ to find the _sign_ of the economic profit the firm is making:
+
+| Comparison     | Economic State  |
+| -------------- | --------------- |
+| $p_c < p_{eq}$ | Economic Loss   |
+| $p_c = p_{eq}$ | Normal Profit   |
+| $p_c > p_{eq}$ | Economic Profit |
+
+## Shutdown Point
+
+If the firm is making an economic loss, we can also find
+
+$$
+p_{min} \coloneqq \min_{q \in Q} (AVC(q))
+$$
+
+and compare $p_{c}$ and $p_{min}$ like so:
+
+| Comparison         | Should the firm shutdown? |
+| ------------------ | ------------------------- |
+| $p_{min} < p_{c}$ | No                        |
+| $p_{min} = p_{c}$ | Doesn't Matter[^3]        |
+| $p_{min} > p_{c}$ | Yes                       |
+
+[^3]: With respect to loss minimization.

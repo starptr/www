@@ -2,12 +2,19 @@ import type { Matrix } from "mathjs";
 import Perfekt from ".";
 
 export module Perfekt {
-	type GenNumArr = (number | null)[] | Matrix | number[][];
+	type GenNum = number | null;
+	type GenNumArr = GenNum[];
 
 	interface Bounds {
 		mktQ: [number, number, number?];
 		firmQ: [number, number, number?];
 		P: [number, number, number?];
+	}
+
+	interface Constants {
+		S: number;
+		D: number;
+		MC: number;
 	}
 
 	interface MarketEquations {
@@ -33,6 +40,7 @@ export module Perfekt {
 		mkt: {
 			S?: CoordinateGraph | null;
 			D?: CoordinateGraph | null;
+			Pmkt?: CoordinateGraph | null;
 		};
 		firm: {
 			MC?: CoordinateGraph | null;
@@ -42,6 +50,7 @@ export module Perfekt {
 			ATC?: CoordinateGraph | null;
 			AVC?: CoordinateGraph | null;
 			AFC?: CoordinateGraph | null;
+			PeqMRARD?: CoordinateGraph | null;
 		};
 	}
 
