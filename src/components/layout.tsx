@@ -5,7 +5,7 @@ import type { WindowLocation } from "@reach/router";
 import Link from "./Link";
 import { rhythm, scale } from "../utils/typography";
 
-import ampersandSrc from "../../content/assets/ampersand-symbol.svg";
+import ampersandSrc from "../../content/assets/ampersand-symbol.svg"; //From https://www.freepik.com/free-icon/ampersand_697225.htm#page=1&query=ampersand&position=35
 
 type Args = {
 	location: WindowLocation<{} | null | undefined>;
