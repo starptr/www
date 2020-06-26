@@ -5,6 +5,8 @@ import type { WindowLocation } from "@reach/router";
 import Link from "./Link";
 import { rhythm, scale } from "../utils/typography";
 
+import ampersandSrc from "../../content/assets/ampersand-symbol.svg";
+
 type Args = {
 	location: WindowLocation<{} | null | undefined>;
 	title?: string;
@@ -22,7 +24,21 @@ const Layout: React.FC<Args> = ({ location, title, children }) => {
 		}
 	`);
 
-	let layoutTitle = title || data.site.siteMetadata.title;
+	let layoutTitle = title || (
+		<>
+			<img
+				src={ampersandSrc}
+				alt="\&"
+				style={{
+					height: rhythm(1.5),
+					marginLeft: rhythm(-0.32),
+					marginRight: rhythm(-0.27),
+					marginBottom: 0,
+				}}
+			/>
+			{data.site.siteMetadata.title.slice(1)}
+		</>
+	);
 
 	const tabs = [
 		{
