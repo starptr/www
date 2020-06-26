@@ -33,7 +33,8 @@ const Index = (props: PageProps<Data>) => {
 		<Layout location={props.location}>
 			<SEO title="Home" />
 			<p>
-				👋Hi!! Welcome to <Home />. I'm <strong>{name}</strong>, and since I like to make things, this page lists some things I've made.
+				👋Hi!! Welcome to <Home />. I'm <strong>{name}</strong>, and since I like to make things, this page lists some things I've
+				made.
 			</p>
 			<p>Some interesting things I'm actively working on:</p>
 			<ul>
@@ -75,6 +76,17 @@ const Index = (props: PageProps<Data>) => {
 					A tool to organize the metadata of classical music tracks, now with a clean database of compositions.
 				</li>
 			</ul>
+			<p>
+				Favicon and title logo made by{" "}
+				<a href="https://www.flaticon.com/authors/freepik" title="Freepik">
+					Freepik
+				</a>{" "}
+				from{" "}
+				<a href="https://www.flaticon.com/" title="Flaticon">
+					{" "}
+					Flaticon
+				</a>
+			</p>
 		</Layout>
 	);
 };
