@@ -246,7 +246,7 @@ const PerfektViz = (props: any) => {
 					}}
 				/>
 			</div>
-			<form>
+			<form style={{ marginBottom: 0 }}>
 				<P>
 					Mode
 					<div
