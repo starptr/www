@@ -1,6 +1,6 @@
 ---
 title: "Perfectly Competitive Markets as Math"
-date: "2020-06-13T18:28:00"
+date: "2020-06-26T05:53:00"
 description: "Graphing calculators aren't really plotting all points."
 ---
 
@@ -26,7 +26,7 @@ $p_{eq}$ is the profit-maximizing price.
 
 $p_{min}$ is the minimum of $AVC$.
 
-## Your $MC$ function is awfully complicated!!
+## The default $MC$ function is awfully complicated!!
 
 Yup, I was having trouble finding a decent function such that all of the cool things like the intersection between $P$ and $ATC$ and $P_{mkt}$ and $AVC$, so I asked Taiga to engineer one using <a href="https://www.desmos.com/calculator/rsukldgnp8">Desmos</a>:
 
@@ -50,12 +50,21 @@ Also, it's always nice to be able to have an interactive visualization of things
 
 ## Mathematical Formalization
 
+Let me show you how some of these functions are calculated from $MC$.
+
+### Defining $TC$ in terms of $MC$
+
 The definition of Marginal Cost ($MC$) is the difference in the Total Cost ($TC$) of producing the currenth $n$th good minus the $TC$ of producing the last good, $(n-1)$th. Using notation from my post on [discrete derivatives](/blog/discrete-derivative), we can define $MC$ as so:
 
 $$
 \begin{aligned}
 MC(q) &\coloneqq TC(q) - TC(q - 1) \\
-	&= \Delta TC(q-1)
+	&= \Delta TC(q-1) \\
+MC(q + 1) &= \Delta TC(q) \\
+MC(q+1) \Delta I(q) &= \Delta TC(q) \\
+\sum_{q = 0}^q MC(q + 1) \Delta I(q) &= \sum_{q = 0}^q \Delta TC(q) \\
+	&= TC(q) - TC(0) \\
+TC(q) &= TC(0) + \sum_{q = 0}^q MC(q + 1) \Delta I(q) \\
 \end{aligned}
 $$
 
@@ -64,11 +73,21 @@ By the way, both $MC$ and $TC$ map $Q \to P$, where $Q$ is the set of nonnegativ
 [^1]: The visualization connects points with consecutive quantities with a line segment, which is why the curves look continuous.
 [^2]: Note that this definition is not formal.
 
+As a side note, we define a special case for $MC(0) \coloneqq TC(0)$ since the general definition results in a term $TC(-1)$, even though $-1 \notin Q$.
+
+### Defining $ATC$ in terms of $MC$
+
 We can define Average Total Cost ($ATC$) similarly, but beware that since it is calculated with respect to the quantity of goods, its domain is actually $Q - \{0\}$. That is, it doesn't make sense to talk about the average cost per good when no goods have been produced. So, $ATC \colon Q-\{0\} \to P$, and
 
 $$
+ATC(q) \coloneqq \frac{TC(q)}{q}
+$$
+
+We can also define $MC$ in terms of $ATC$:
+
+$$
 \begin{aligned}
-ATC(q) &\coloneqq \frac{TC(q)}{q} \\
+ATC(q) &= \frac{TC(q)}{q} \\
 q \cdot ATC(q) &= TC(q) \\
 \Delta [q \cdot ATC](q) &= \Delta TC(q) \\
 q \Delta ATC(q) &= MC(q + 1) \\
@@ -116,8 +135,8 @@ $$
 
 and compare $p_{c}$ and $p_{min}$ like so:
 
-| Comparison         | Should the firm shutdown? |
-| ------------------ | ------------------------- |
+| Comparison        | Should the firm shutdown? |
+| ----------------- | ------------------------- |
 | $p_{min} < p_{c}$ | No                        |
 | $p_{min} = p_{c}$ | Doesn't Matter[^3]        |
 | $p_{min} > p_{c}$ | Yes                       |
