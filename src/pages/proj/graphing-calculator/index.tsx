@@ -1,5 +1,5 @@
 import React from "react";
-import { Link, graphql } from "gatsby";
+import { graphql } from "gatsby";
 import type { PageProps } from "gatsby";
 
 import Bio from "../../../components/bio";
