@@ -8,6 +8,7 @@ import Layout from "../../components/layout";
 import SEO from "../../components/seo";
 import SmallBoxed from "../../components/SmallBoxed";
 import Link from "../../components/Link";
+import Tags from "../../components/Tags";
 import { rhythm } from "../../utils/typography";
 
 type Data = {
@@ -30,6 +31,7 @@ type Data = {
 					title: string;
 					date: string;
 					description: string;
+					tags: string[];
 				};
 				fields: {
 					slug: string;
@@ -41,7 +43,6 @@ type Data = {
 
 const BlogIndex = ({ data, location }: PageProps<Data>) => {
 	const posts = data.allMdx.edges;
-	const blogTitle = data.site.siteMetadata.blog.title;
 	const author = data.site.siteMetadata.author.name;
 
 	return (
@@ -55,6 +56,8 @@ const BlogIndex = ({ data, location }: PageProps<Data>) => {
 			/>
 			{posts.map(({ node }) => {
 				const title = node.frontmatter.title || node.fields.slug;
+				const tags = node.frontmatter.tags;
+
 				return (
 					<article key={node.fields.slug}>
 						<header>
@@ -72,7 +75,8 @@ const BlogIndex = ({ data, location }: PageProps<Data>) => {
 									marginBottom: rhythm(1 / 8),
 								}}
 							>
-								<small>{node.frontmatter.date}</small>
+								<p style={{ marginBottom: 0, display: "inline" }}>{node.frontmatter.date}</p>
+								<Tags showSeparator tags={tags} />
 							</div>
 						</header>
 						<section>
@@ -115,6 +119,7 @@ export const pageQuery = graphql`
 						date(formatString: "MMMM D, Y · H:mm a")
 						title
 						description
+						tags
 					}
 				}
 			}

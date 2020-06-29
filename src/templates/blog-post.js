@@ -7,6 +7,7 @@ import "katex/dist/katex.min.css";
 import Bio from "../components/bio";
 import Layout from "../components/layout";
 import SEO from "../components/seo";
+import Tags from "../components/Tags";
 import { rhythm, scale } from "../utils/typography";
 
 const blogAdjustComponent = child => {
@@ -24,10 +25,7 @@ const BlogPostTemplate = ({ data, pageContext, location }) => {
 
 	return (
 		<Layout location={location} title={siteTitle}>
-			<SEO
-				title={post.frontmatter.title}
-				description={post.frontmatter.description || post.excerpt}
-			/>
+			<SEO title={post.frontmatter.title} description={post.frontmatter.description || post.excerpt} />
 			<article>
 				<header>
 					<h1
@@ -38,15 +36,22 @@ const BlogPostTemplate = ({ data, pageContext, location }) => {
 					>
 						{post.frontmatter.title}
 					</h1>
-					<p
+					<hr
 						style={{
-							...scale(-1 / 5),
-							display: `block`,
-							marginBottom: rhythm(1),
+							marginTop: rhythm(0.5),
+							marginBottom: rhythm(0.5),
 						}}
-					>
-						{post.frontmatter.date}
-					</p>
+					/>
+					<div style={{ marginBottom: rhythm(1) }}>
+						<p
+							style={{
+								display: `inline`,
+							}}
+						>
+							{post.frontmatter.date}
+						</p>
+						<Tags showSeparator tags={post.frontmatter.tags} />
+					</div>
 				</header>
 				<MDXProvider
 					components={{
@@ -126,6 +131,7 @@ export const pageQuery = graphql`
 				title
 				date(formatString: "MMMM DD, YYYY")
 				description
+				tags
 			}
 		}
 	}
