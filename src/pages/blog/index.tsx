@@ -9,6 +9,7 @@ import SEO from "../../components/seo";
 import SmallBoxed from "../../components/SmallBoxed";
 import Link from "../../components/Link";
 import Tags from "../../components/Tags";
+import RichPostCard from "../../components/RichPostCard";
 import { rhythm } from "../../utils/typography";
 
 type Data = {
@@ -59,34 +60,14 @@ const BlogIndex = ({ data, location }: PageProps<Data>) => {
 				const tags = node.frontmatter.tags;
 
 				return (
-					<article key={node.fields.slug}>
-						<header>
-							<h3
-								style={{
-									marginTop: rhythm(1.5),
-									marginBottom: 0,
-								}}
-							>
-								<Link to={node.fields.slug}>{title}</Link>
-							</h3>
-							<div
-								style={{
-									marginTop: rhythm(1 / 8),
-									marginBottom: rhythm(1 / 8),
-								}}
-							>
-								<p style={{ marginBottom: 0, display: "inline" }}>{node.frontmatter.date}</p>
-								<Tags showSeparator tags={tags} />
-							</div>
-						</header>
-						<section>
-							<p
-								dangerouslySetInnerHTML={{
-									__html: node.frontmatter.description || node.excerpt,
-								}}
-							/>
-						</section>
-					</article>
+					<RichPostCard
+						slug={node.fields.slug}
+						title={title}
+						date={node.frontmatter.date}
+						tags={node.frontmatter.tags}
+						description={node.frontmatter.description}
+						excerpt={node.excerpt}
+					/>
 				);
 			})}
 		</Layout>
