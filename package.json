@@ -42,6 +42,7 @@
     "react-katex": "^2.0.2",
     "react-plotly.js": "^2.4.0",
     "react-typography": "^0.16.19",
+    "tslib": "^2.0.0",
     "typeface-merriweather": "0.0.72",
     "typeface-montserrat": "0.0.75",
     "typography": "^0.16.19",

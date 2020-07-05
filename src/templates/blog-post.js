@@ -26,7 +26,85 @@ const BlogPostTemplate = ({ data, pageContext, location }) => {
 	return (
 		<Layout location={location} title={siteTitle}>
 			<SEO title={post.frontmatter.title} description={post.frontmatter.description || post.excerpt} />
-			<h1>Tag: </h1>
+			<article>
+				<header>
+					<h1
+						style={{
+							marginTop: rhythm(1),
+							marginBottom: 0,
+						}}
+					>
+						{post.frontmatter.title}
+					</h1>
+					<hr style={{ marginBottom: 0 }} />
+					<p
+						style={{
+							...scale(-1 / 5),
+							display: `block`,
+							marginBottom: rhythm(1),
+						}}
+					>
+						{post.frontmatter.date}
+						<Tags showSeparator tags={post.frontmatter.tags} />
+					</p>
+				</header>
+				<MDXProvider
+					components={{
+						wrapper: ({ children, ...props }) => {
+							//If no members, return itself
+							if (!children) return <>{children}</>;
+							//If only 1 member in mdx, children is not an array
+							const updatedChildren = Array.isArray(children)
+								? children.map(blogAdjustComponent)
+								: blogAdjustComponent(children);
+							return <section>{updatedChildren}</section>;
+						},
+					}}
+				>
+					<MDXRenderer>{post.body}</MDXRenderer>
+				</MDXProvider>
+				<hr
+					style={{
+						marginTop: rhythm(1),
+						marginBottom: rhythm(1),
+					}}
+				/>
+				<footer>
+					<Bio
+						style={{
+							marginTop: rhythm(1),
+							marginBottom: rhythm(1),
+						}}
+					/>
+				</footer>
+			</article>
+
+			<nav>
+				<ul
+					style={{
+						display: `flex`,
+						flexWrap: `wrap`,
+						justifyContent: `space-between`,
+						listStyle: `none`,
+						padding: 0,
+					}}
+				>
+					<li>
+						{previous && (
+							<Link to={previous.fields.slug} rel="prev">
+								← {previous.frontmatter.title}
+							</Link>
+						)}
+					</li>
+					<li>
+						{next && (
+							<Link to={next.fields.slug} rel="next">
+								{next.frontmatter.title} →
+							</Link>
+						)}
+					</li>
+				</ul>
+			</nav>
 		</Layout>
 	);
 };
