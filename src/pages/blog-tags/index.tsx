@@ -42,27 +42,19 @@ type Data = {
 };
 
 const TagsIndex = ({ data, location }: PageProps<Data>) => {
-	const posts = [...data.allMdx.edges];
+	const posts = data.allMdx.edges;
 	const author = data.site.siteMetadata.author.name;
-	console.log("copy:", posts);
 
 	const tags = new Map<string, number>();
 	posts.forEach(({ node }) =>
-		node.frontmatter.tags.forEach(tagStr => tags.set(tagStr, tags.has(tagStr) ? (tags.get(tagStr) as number) + 1 : 1))
+		node.frontmatter.tags?.forEach(tagStr => tags.set(tagStr, tags.has(tagStr) ? (tags.get(tagStr) as number) + 1 : 1))
 	);
 	const tagsSorted = [...tags].sort((a: [string, number], b: [string, number]) => (a[0] > b[0] ? 1 : -1));
 
 	return (
 		<Layout location={location}>
 			<SEO title="All posts" description={`Streaming direct thought dumps from ${author}.`} />
-			<h1
-				style={{
-					marginTop: rhythm(1),
-					marginBottom: 0,
-				}}
-			>
-				All Tags
-			</h1>
+			<h1>All Tags</h1>
 			<ul>
 				{tagsSorted.map(tagCtPair => (
 					<li>{`${tagCtPair[0]} (${tagCtPair[1]})`}</li>
