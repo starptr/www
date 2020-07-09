@@ -68,8 +68,5 @@ yarn-error.log
 # Yarn Integrity file
 .yarn-integrity
 
-# Windows Photos extras
-*:Zone.Identifier
-
 # paint.net backups
 *.pdnBak
