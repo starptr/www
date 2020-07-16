@@ -94,7 +94,15 @@ const Index = (props: PageProps<Data>) => {
 						<td>
 							<a href="https://artofproblemsolving.com/wiki/index.php/2002_AMC_10A_Problems">AMC 10A 2002</a> #16-25
 						</td>
-						<td>July 14</td>
+						<td>
+							<a href="https://www.youtube.com/watch?v=fSHULbDLV6k">July 14</a>
+						</td>
+					</tr>
+					<tr>
+						<td>
+							<a href="https://artofproblemsolving.com/wiki/index.php/2002_AMC_10B_Problems">AMC 10B 2002</a> #1-15
+						</td>
+						<td>July 21</td>
 					</tr>
 				</tbody>
 			</table>
