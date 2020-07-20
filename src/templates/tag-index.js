@@ -8,105 +8,37 @@ import Bio from "../components/bio";
 import Layout from "../components/layout";
 import SEO from "../components/seo";
 import Tags from "../components/Tags";
+import RichPostCard from "../components/RichPostCard";
 import { rhythm, scale } from "../utils/typography";
 
-const BlogPostTemplate = ({ data, pageContext, location }) => {
-	const post = data.mdx;
+const TagIndexTemplate = ({ data, pageContext, location }) => {
+	const posts = data.allMdx.edges;
 	const siteTitle = data.site.siteMetadata.title;
-	const { previous, next } = pageContext;
+	const { tagStr } = pageContext;
 
 	return (
 		<Layout location={location} title={siteTitle}>
-			<SEO title={post.frontmatter.title} description={post.frontmatter.description || post.excerpt} />
-			<article>
-				<header>
-					<h1
-						style={{
-							marginTop: rhythm(1),
-							marginBottom: 0,
-						}}
-					>
-						{post.frontmatter.title}
-					</h1>
-					<hr
-						style={{
-							marginTop: rhythm(0.5),
-							marginBottom: rhythm(0.5),
-						}}
-					/>
-					<div style={{ marginBottom: rhythm(1) }}>
-						<p
-							style={{
-								display: `inline`,
-							}}
-						>
-							{post.frontmatter.date}
-						</p>
-						<Tags showSeparator tags={post.frontmatter.tags} />
-					</div>
-				</header>
-				<MDXProvider
-					components={{
-						wrapper: ({ children, ...props }) => {
-							//If no members, return itself
-							if (!children) return <>{children}</>;
-							//If only 1 member in mdx, children is not an array
-							const updatedChildren = Array.isArray(children)
-								? children.map(blogAdjustComponent)
-								: blogAdjustComponent(children);
-							return <section>{updatedChildren}</section>;
-						},
-					}}
-				>
-					<MDXRenderer>{post.body}</MDXRenderer>
-				</MDXProvider>
-				<hr
-					style={{
-						marginTop: rhythm(1),
-						marginBottom: rhythm(1),
-					}}
-				/>
-				<footer>
-					<Bio
-						style={{
-							marginTop: rhythm(1),
-							marginBottom: rhythm(1),
-						}}
-					/>
-				</footer>
-			</article>
+			<SEO title={`Posts tagged ${tagStr}`} description={`List of posts that are tagged with ${tagStr}`} />
+			{posts.map(({ node }) => {
+				const title = node.frontmatter.title || node.fields.slug;
+				const tags = node.frontmatter.tags;
 
-			<nav>
-				<ul
-					style={{
-						display: `flex`,
-						flexWrap: `wrap`,
-						justifyContent: `space-between`,
-						listStyle: `none`,
-						padding: 0,
-					}}
-				>
-					<li>
-						{previous && (
-							<Link to={previous.fields.slug} rel="prev">
-								← {previous.frontmatter.title}
-							</Link>
-						)}
-					</li>
-					<li>
-						{next && (
-							<Link to={next.fields.slug} rel="next">
-								{next.frontmatter.title} →
-							</Link>
-						)}
-					</li>
-				</ul>
-			</nav>
+				return (
+					<RichPostCard
+						slug={node.fields.slug}
+						title={title}
+						date={node.frontmatter.date}
+						tags={node.frontmatter.tags}
+						description={node.frontmatter.description}
+						excerpt={node.excerpt}
+					/>
+				);
+			})}
 		</Layout>
 	);
 };
 
-export default BlogPostTemplate;
+export default TagIndexTemplate;
 
 export const pageQuery = graphql`
 	query BlogPostByTag($tagStr: String!) {
@@ -119,6 +51,9 @@ export const pageQuery = graphql`
 			edges {
 				node {
 					excerpt
+					fields {
+						slug
+					}
 					frontmatter {
 						title
 						date(formatString: "MMMM D, Y · H:mm a")
