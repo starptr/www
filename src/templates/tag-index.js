@@ -17,7 +17,7 @@ const TagIndexTemplate = ({ data, pageContext, location }) => {
 	const { tagStr } = pageContext;
 
 	return (
-		<Layout location={location} title={siteTitle}>
+		<Layout location={location}>
 			<SEO title={`Posts tagged ${tagStr}`} description={`List of posts that are tagged with ${tagStr}`} />
 			{posts.map(({ node }) => {
 				const title = node.frontmatter.title || node.fields.slug;
