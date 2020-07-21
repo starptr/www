@@ -8,6 +8,7 @@ import Layout from "../../components/layout";
 import SEO from "../../components/seo";
 import SmallBoxed from "../../components/SmallBoxed";
 import Link from "../../components/Link";
+import LinkTag from "../../components/LinkTag";
 import Tags from "../../components/Tags";
 import RichPostCard from "../../components/RichPostCard";
 import { rhythm } from "../../utils/typography";
@@ -59,7 +60,7 @@ const TagsIndex = ({ data, location }: PageProps<Data>) => {
 			<ul>
 				{tagsSorted.map(tagCtPair => (
 					<li>
-						<Link to={`/blog-tags/${_.kebabCase(tagCtPair[0])}`}>{`${tagCtPair[0]} (${tagCtPair[1]})`}</Link>
+						<LinkTag tag={tagCtPair[0]}>{`${tagCtPair[0]} (${tagCtPair[1]})`}</LinkTag>
 					</li>
 				))}
 			</ul>
