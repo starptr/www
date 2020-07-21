@@ -2,6 +2,7 @@
 title: "Node Setup for the Organized"
 date: "2020-05-23T12:50:00"
 description: "Worried about NodeJS version and npm package conflicts?"
+tags: ["Computer Science"]
 ---
 
 Like [python](/blog/python-setup), NodeJS also suffers from specific version requirements. Unlike python, Node's popular package managers don't clutter the filesystem, so the tools to organize projects are a bit simpler. That's because the dependencies for an arbitrary project are installed to `node_modules`, local to the root of the project.

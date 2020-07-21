@@ -2,6 +2,7 @@
 title: "Counting to 99 with Fingers"
 date: "2020-05-24T18:19:00"
 description: "We can easily extend our counting range with hands from 10 to 99 with a relatively small learning curve."
+tags: ["Niche Idea"]
 ---
 
 Consider the following:
