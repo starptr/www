@@ -2,6 +2,7 @@
 title: "Python Setup for the Organized"
 date: "2020-05-22T13:48:00"
 description: "Worried about python version and package conflicts?"
+tags: ["Computer Science"]
 ---
 
 Some packages depend on a specific version of python, which is why you'll need a python version manager like `pyenv`. Some projects will conflict on specific versions of packages needed, so you'll need a way to sandbox projects like `pipenv`. Here is my setup (indentation represents nesting):

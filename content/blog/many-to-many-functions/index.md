@@ -2,6 +2,7 @@
 title: 'Many-to-Many "Functions"'
 date: "2020-05-19T01:40:00"
 description: 'There is an elegant way to make "functions" spit out multiple answers.'
+tags: ["Math"]
 ---
 
 One of the things in math that has always irked me a bit is the inability to express the points on a circle elegantly using a function. For example, $x^2 + y^2 = 1$ is an equation for points on a circle centered at $(0,0)$ with a radius of $1$, but if we wanted to express that in a $y=f(x)$ form, there isn't a great way to do this. You'd be stuck with two functions:

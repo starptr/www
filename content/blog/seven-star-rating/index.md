@@ -2,6 +2,7 @@
 title: "7-Star Rating Scale"
 date: "2020-05-24T14:06:00"
 description: "5-Star scale is too coarse, and 10-Star is too fine to be meaningful. On the other hand, 7-Star is natural."
+tags: ["Niche Idea"]
 ---
 
 The human brain is not very good at conceptualizing large numbers and complicated proportions. For example, can you really imagine a $3\%$ chance of winning? Chances are (no pun intended) that you can't. Most people see "$3\%$ chance" and internally translate it to "close to not happening". Likewise, we see $98\%$ and think "close to certain". And when we see something like $42\%$, we think "it can either happen or not". This meme captures this idea:
