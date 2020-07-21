@@ -1,6 +1,7 @@
 import React from "react";
 import { graphql } from "gatsby";
 import type { PageProps } from "gatsby";
+import _ from "lodash";
 
 import Bio from "../../components/bio";
 import Layout from "../../components/layout";
@@ -57,7 +58,9 @@ const TagsIndex = ({ data, location }: PageProps<Data>) => {
 			<h1>All Tags</h1>
 			<ul>
 				{tagsSorted.map(tagCtPair => (
-					<li>{`${tagCtPair[0]} (${tagCtPair[1]})`}</li>
+					<li>
+						<Link to={`/blog-tags/${_.kebabCase(tagCtPair[0])}`}>{`${tagCtPair[0]} (${tagCtPair[1]})`}</Link>
+					</li>
 				))}
 			</ul>
 			<Bio
