@@ -1,6 +1,6 @@
 ---
 title: "My (Overcomplicated) Coherent System of Measurements"
-date: "2020-07-23T14:30:00"
+date: "2020-07-23T18:25:00"
 description: "The imperial system in a parallel universe."
 tags: ["Metrology"]
 ---
