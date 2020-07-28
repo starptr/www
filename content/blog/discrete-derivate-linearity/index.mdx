@@ -1,0 +1,42 @@
+---
+title: "Discrete Calculus: Linearity"
+date: "2020-07-27T23:42:00"
+description: "The imperial system in a parallel universe."
+tags: ["Discrete Calculus", "Math"]
+---
+
+For an operator to be a [linear function](https://en.wikipedia.org/wiki/Linearity), they must meet two criterias:
+
+1. Additivity, i.e. addition is preserved
+2. Homogeneity of degree 1, i.e. scalar multiplication is preserved
+
+In other words, the following are satisfied:
+
+-   $f(x+y) = f(x) + f(y)$
+-   $f(cx) = c f(x)$
+
+for the function $f$ of interest. It turns out that discrete derivatives satify these conditions.
+
+## Additivity
+
+$$
+\begin{aligned}
+\Delta_h[f + g](n) &= \frac{[f+g](n + h) - [f+g](n)}{h} \\
+	&= \frac{f(n + h) + g(n + h) - (f(n) + g(n))}{h} \\
+	&= \frac{f(n+h)-f(n)}{h} + \frac{g(n+h)-g(n)}{h} \\
+	&= \Delta_h f(n) + \Delta_h g(n) \space \blacksquare \\
+\end{aligned}
+$$
+
+## Homogeneity of degree 1
+
+$$
+\begin{aligned}
+\Delta_h[cf](n) &= \frac{[cf](n + h) - [cf](n)}{h} \\
+	&= \frac{c f(n+h) - c f(n)}{h} \\
+	&= c \cdot \frac{f(n+h) - f(n)}{h} \\
+	&= c \Delta_h f(n) \space \blacksquare \\
+\end{aligned}
+$$
+
+So we can conclude that the discrete derivative as an operation is a linear transformation in the function space.
