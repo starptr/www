@@ -33,47 +33,57 @@ const Index = (props: PageProps<Data>) => {
 		<Layout location={props.location}>
 			<SEO title="Home" />
 			<p>
-				👋Hi!! Welcome to <Home />. I'm <strong>{name}</strong>, and since I like to make things, this page lists some things I've
-				made.
+				👋Hi!! I'm <strong>{name}</strong> and I like to make things. This page lists some
+				things I've made.
 			</p>
 			<p>Some interesting things I'm actively working on:</p>
 			<ul>
 				<li>
 					<strong>
-						<Link to="/">This website.</Link>
+						<Link to="/">This website</Link>.
 					</strong>{" "}
 					It's far from polished, and eventually I'd like to put most of my work here.
 				</li>
 				<li>
 					<strong>
-						<Link to="/22to7/amc-lp">22to7 – AMC: Let's Play!</Link>
+						<Link to="/blog">Post[]</Link>.
 					</strong>{" "}
-					Set of weekly livestreams where I solve past AMC problems, taking questions live.
+					Most of my cool small projects are here.
 				</li>
 			</ul>
 			<p>Projects that I consider completed and done:</p>
 			<ul>
 				<li>
 					<strong>
-						<a href="http://eartrain.surge.sh/">Eartrain.</a>
+						<a href="http://eartrain.surge.sh/">Eartrain</a>.
 					</strong>{" "}
-					A webapp that tests one's ability to identity notes from listening to random pitches in succession. Using a special
-					notation for half-flats and half-sharps, every octave contains 24 different pitches to be selected from.
+					A webapp that tests one's ability to identity notes from listening to random
+					pitches in succession. Using a special notation for half-flats and half-sharps,
+					every octave contains 24 different pitches to be selected from.
 				</li>
 				<li>
 					<strong>
-						<a href="http://22to7.surge.sh/">22to7 – Prosol.</a>
+						<a href="http://22to7.surge.sh/">22to7 – Prosol</a>.
 					</strong>{" "}
-					A 3-day mini math camp I did to introduce advanced mathematics problem solving skills to middle schoolers.
+					A 3-day mini math camp I did to introduce advanced mathematics problem solving
+					skills to middle schoolers.
 				</li>
 			</ul>
 			<p>These are currently on a hiatus:</p>
 			<ul>
 				<li>
 					<strong>
-						<a href="https://www.npmjs.com/package/classical-music-tagger">CMT 2.</a>
+						<a href="https://www.npmjs.com/package/classical-music-tagger">CMT 2</a>.
 					</strong>{" "}
-					A tool to organize the metadata of classical music tracks, now with a clean database of compositions.
+					A tool to organize the metadata of classical music tracks, now with a clean
+					database of compositions.
+				</li>
+				<li>
+					<strong>
+						<Link to="/22to7/amc-lp">22to7 – AMC: Let's Play!</Link>
+					</strong>{" "}
+					Set of weekly livestreams where I solve past AMC problems, taking questions
+					live.
 				</li>
 			</ul>
 			<p>
