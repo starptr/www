@@ -6,7 +6,7 @@ import type * as NP from "./NP";
 import NPInternalComponent from "./NPInternalComponent";
 
 type Args = {
-	apiURL: string;
+	apiURL?: string;
 	style?: CSS.Properties;
 };
 
@@ -44,7 +44,7 @@ const NowPlaying: React.FC<Args> = props => {
 					progress_ms?: number;
 					is_playing?: boolean;
 					error?: string;
-				}>(props.apiURL, {
+				}>(props.apiURL || "http://52.12.91.203/now-playing", {
 					timeout: 5000,
 				})
 				.then(res => {
