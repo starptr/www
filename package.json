@@ -54,6 +54,7 @@
     "@types/loadable__component": "^5.10.0",
     "@types/mathjs": "^6.0.5",
     "@types/plotly.js": "^1.50.13",
+    "csstype": "^3.0.2",
     "prettier": "2.0.5"
   },
   "homepage": "https://github.com/gatsbyjs/gatsby-starter-blog#readme",
