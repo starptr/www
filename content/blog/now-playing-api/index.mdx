@@ -1,0 +1,35 @@
+---
+title: "Now Playing API and My Spotify"
+date: "2020-08-05T00:01:00"
+description: "Show off what you're listening to on Spotify on your own personal website via a widget."
+tags: ["Computer Science", "Music"]
+---
+
+import NowPlaying from "../../../src/components/NowPlaying"
+import { rhythm } from "../../../src/utils/typography"
+
+Here's a cool widget that shows what I'm currently listening to on Spotify, heavily inspired by Discord's integration:
+
+<NowPlaying apiURL="http://52.12.91.203/now-playing" style={{ marginBottom: rhythm(1) }} />
+
+To prevent hitting Spotify's API rate limit (and to hide credentials 😬), I'm running the [now-playing-api](https://github.com/starptr/now-playing-api) that I scripted a few days ago on a cheap AWS Lightsail instance.
+
+I started using Spotify a lot more in the past few months, so I've organized a few playlists. Here are three that I listen to the most:
+
+## Energetic Pop
+
+This list contains iconic pop music that all have a party-like energy.
+
+<iframe src="https://open.spotify.com/embed/playlist/5gQkVxGYBYpJlfAeOl6qZ6" width="100%" height="300" frameborder="0" allowtransparency="true" allow="encrypted-media"></iframe>
+
+## Classic
+
+This list has most of my instrumental pieces, totaling +26 hours at the time of writing.
+
+<iframe src="https://open.spotify.com/embed/playlist/0K4cvRB7K2as4luR5f0Hyg" width="100%" height="300" frameborder="0" allowtransparency="true" allow="encrypted-media"></iframe>
+
+## Classic Solos
+
+This list has all of the solos.
+
+<iframe src="https://open.spotify.com/embed/playlist/2au977axTYiYWk9O7e5OXA" width="100%" height="300" frameborder="0" allowtransparency="true" allow="encrypted-media"></iframe>
