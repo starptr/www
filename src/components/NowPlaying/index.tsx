@@ -1,39 +1,22 @@
 import React, { useState, useEffect } from "react";
 import { Link } from "gatsby";
 import axios from "axios";
-
-type NpData = {
-	title: {
-		value: string;
-		url: string;
-	};
-	artist: {
-		value: string;
-		url: string;
-	}[];
-	album: {
-		value: string;
-		url: string;
-	};
-	cover: string;
-	time: {
-		//measured in ms
-		progress: number;
-		duration: number;
-	};
-	is_playing: boolean;
-} | null;
+import type CSS from "csstype";
+import type * as NP from "./NP";
+import NPInternalComponent from "./NPInternalComponent";
 
 type Args = {
 	apiURL: string;
+	style?: CSS.Properties;
 };
 
 const NowPlaying: React.FC<Args> = props => {
-	const [npData, setNpData] = useState<NpData>(null);
+	const [npData, setNpData] = useState<NP.NpData>(null);
+	const [playState, setPlayState] = useState<NP.PlayState>("loading");
 
 	useEffect(() => {
-		const periodicReq = setInterval(() => {
-			axios
+		const periodicReq = setInterval(async () => {
+			await axios
 				.get<{
 					is_not_playing?: boolean;
 					item?: {
@@ -60,12 +43,20 @@ const NowPlaying: React.FC<Args> = props => {
 					};
 					progress_ms?: number;
 					is_playing?: boolean;
-				}>(props.apiURL)
+					error?: string;
+				}>(props.apiURL, {
+					timeout: 5000,
+				})
 				.then(res => {
 					const { data } = res;
-					if (data.is_not_playing) {
+					if (data.error) {
+						setPlayState(() => "token-error");
+					} else if (data.is_not_playing || !data.item) {
+						setPlayState(() => "not-playing");
 						setNpData(() => null);
 					} else {
+						setPlayState(() => "playing");
+
 						let transformedData = {
 							title: {
 								value: data.item?.name,
@@ -87,30 +78,18 @@ const NowPlaying: React.FC<Args> = props => {
 							is_playing: data.is_playing,
 						};
 
-						setNpData(() => (transformedData as unknown) as NpData);
+						setNpData(() => (transformedData as unknown) as NP.NpData);
 					}
 				})
 				.catch(err => {
+					setPlayState(() => "timeout");
 					console.error(err);
 				});
 		}, 1000);
 		return () => clearInterval(periodicReq);
 	}, []);
 
-	if (npData) {
-		return (
-			<div>
-				<p>{npData.title.value}</p>
-				<p>{npData.artist[0].value}</p>
-				<p>{npData.album.value}</p>
-				<p>
-					{npData.time.progress / 1000} / {npData.time.duration / 1000}
-				</p>
-			</div>
-		);
-	} else {
-		return <div>npData is null</div>;
-	}
+	return <NPInternalComponent playState={playState} data={npData} style={props.style} />;
 };
 
 export default NowPlaying;
