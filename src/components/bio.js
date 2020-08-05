@@ -9,6 +9,7 @@ import React from "react";
 import { useStaticQuery, graphql } from "gatsby";
 import Image from "gatsby-image";
 
+import NowPlaying from "./NowPlaying";
 import { rhythm } from "../utils/typography";
 
 const Bio = props => {
@@ -38,48 +39,41 @@ const Bio = props => {
 
 	const { author, social } = data.site.siteMetadata;
 	return (
-		<div
-			style={{
-				display: `flex`,
-				alignItems: `center`,
-				...props.style,
-			}}
-		>
-			<Image
-				fixed={data.avatar.childImageSharp.fixed}
-				alt={author.name}
+		<div>
+			<div
 				style={{
-					marginRight: rhythm(1 / 2),
-					marginBottom: 0,
-					minWidth: 50,
-					borderRadius: `30%`,
-				}}
-				imgStyle={{
-					borderRadius: `30%`,
-					marginBottom: 0,
-				}}
-			/>
-			<p
-				style={{
-					marginBottom: 0,
+					display: `flex`,
+					alignItems: `center`,
+					...props.style,
 				}}
 			>
-				Streaming direct thought dumps from{" "}
-				<strong>{author.name}</strong>.
-				<br />
-				Follow me on{" "}
-				<a href={`https://twitter.com/${social.twitter}`}>
-					Twitter
-				</a>,{" "}
-				<a href={`https://instagram.com/${social.instagram}`}>
-					Instagram
-				</a>
-				, or connect with me on{" "}
-				<a href={`https://www.linkedin.com/in/${social.linkedin}`}>
-					LinkedIn
-				</a>
-				!
-			</p>
+				<Image
+					fixed={data.avatar.childImageSharp.fixed}
+					alt={author.name}
+					style={{
+						marginRight: rhythm(1 / 2),
+						marginBottom: 0,
+						minWidth: 50,
+						borderRadius: `30%`,
+					}}
+					imgStyle={{
+						borderRadius: `30%`,
+						marginBottom: 0,
+					}}
+				/>
+				<p
+					style={{
+						marginBottom: 0,
+					}}
+				>
+					Streaming direct thought dumps from <strong>{author.name}</strong>.
+					<br />
+					Connect with me on{" "}
+					<a href={`https://www.linkedin.com/in/${social.linkedin}`}>LinkedIn</a>! I'm
+					currently listening to:
+				</p>
+			</div>
+			<NowPlaying style={{ marginBottom: rhythm(1) }} />
 		</div>
 	);
 };

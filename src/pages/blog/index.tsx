@@ -52,7 +52,7 @@ const BlogIndex = ({ data, location }: PageProps<Data>) => {
 			<Bio
 				style={{
 					marginTop: rhythm(1.25),
-					marginBottom: rhythm(1.5),
+					marginBottom: rhythm(0.5),
 				}}
 			/>
 			{posts.map(({ node }) => {
