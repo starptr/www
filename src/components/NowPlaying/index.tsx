@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import { useStaticQuery, graphql } from "gatsby";
 import { Link } from "gatsby";
 import axios from "axios";
 import type CSS from "csstype";
@@ -11,6 +12,17 @@ type Args = {
 };
 
 const NowPlaying: React.FC<Args> = props => {
+	const gdata = useStaticQuery(graphql`
+		query NowPlayingQuery {
+			site {
+				siteMetadata {
+					npApiUrl
+				}
+			}
+		}
+	`);
+	const { npApiUrl } = gdata.site.siteMetadata;
+
 	const [npData, setNpData] = useState<NP.NpData>(null);
 	const [playState, setPlayState] = useState<NP.PlayState>("loading");
 
@@ -44,7 +56,7 @@ const NowPlaying: React.FC<Args> = props => {
 					progress_ms?: number;
 					is_playing?: boolean;
 					error?: string;
-				}>(props.apiURL || "http://52.12.91.203/now-playing", {
+				}>(props.apiURL || npApiUrl, {
 					timeout: 5000,
 				})
 				.then(res => {
