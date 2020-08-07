@@ -1,4 +1,6 @@
 import React, { useState, useEffect } from "react";
+import Marquee from "react-marquee";
+
 import { rhythm } from "../../utils/typography";
 import type * as NP from "./NP";
 import type CSS from "csstype";
@@ -6,6 +8,7 @@ import type CSS from "csstype";
 import SpotifyIconSrc from "./spotify.svg";
 
 const ICON_RHYTHM_SIZE = 3;
+const GAP_RHYTHM_SIZE = 1;
 
 const msToMinutesSeconds = (ms: number) => {
 	let min = Math.floor(ms / 60000);
@@ -23,71 +26,92 @@ const NPInternalComponent: React.FC<Args> = props => {
 	let isPlaying = props.playState === "playing";
 	return (
 		<div
-			style={{
-				color: "white",
-				backgroundColor: "#1f1f1f",
-				padding: rhythm(0.7),
-				paddingBottom: rhythm(0.1),
-				...(props.style as CSS.Properties),
-			}}
+			style={
+				{
+					color: "white",
+					backgroundColor: "#1f1f1f",
+					padding: rhythm(0.7),
+					paddingBottom: rhythm(0.1),
+					...(props.style as CSS.Properties),
+				} as React.CSSProperties
+			}
 		>
 			<div
 				style={{
-					display: "flex",
+					display: "grid",
+					gridTemplateColumns: `${rhythm(ICON_RHYTHM_SIZE)} calc(100% - ${rhythm(
+						ICON_RHYTHM_SIZE + GAP_RHYTHM_SIZE
+					)})`,
+					gridColumnGap: rhythm(GAP_RHYTHM_SIZE),
+					alignContent: "center",
 				}}
 			>
 				<img
 					style={{
-						display: "inline",
+						gridRow: "1 / 4",
 						width: rhythm(ICON_RHYTHM_SIZE),
 						height: rhythm(ICON_RHYTHM_SIZE),
 						marginBottom: 0,
-						marginRight: rhythm(1),
 					}}
 					src={isPlaying ? props.data?.cover : SpotifyIconSrc}
 				/>
-				<div
-					style={{
-						display: "flex",
-						flexDirection: "column",
-						justifyContent: "center",
-					}}
-				>
-					{isPlaying ? (
-						<>
-							{" "}
-							<small>
-								<a style={{ color: "white" }} href={props.data?.title.url}>
-									<strong>{props.data?.title.value}</strong>
-								</a>
-							</small>
-							<small>
-								{props.data?.artist.map((artist, index) => (
-									<>
+				{isPlaying ? (
+					<>
+						{" "}
+						<small style={{ alignSelf: "end", marginBottom: rhythm(-0.15) }}>
+							<Marquee
+								text={
+									<span title="">
+										<a style={{ color: "white" }} href={props.data?.title.url}>
+											<strong>{props.data?.title.value}</strong>
+										</a>
+									</span>
+								}
+							/>
+						</small>
+						<small style={{ alignSelf: "center" }}>
+							<Marquee
+								text={props.data?.artist.map((artist, index) => (
+									<span title="">
 										{index === 0 ? "by " : ", "}
 										<a style={{ color: "white" }} href={artist.url}>
 											{artist.value}
 										</a>
-									</>
+									</span>
 								))}
-							</small>
-							<small>
-								on{" "}
-								<a style={{ color: "white" }} href={props.data?.album.url}>
-									{props.data?.album.value}
-								</a>
-							</small>
-						</>
-					) : props.playState === "not-playing" ? (
-						"Nothing is playing."
-					) : props.playState === "timeout" ? (
-						"Connection timed out."
-					) : props.playState === "loading" ? (
-						"Loading…"
-					) : (
-						"Token error!"
-					)}
-				</div>
+							/>
+						</small>
+						<small
+							style={{ alignSelf: "start", marginTop: rhythm(-0.15), width: "100%" }}
+						>
+							<Marquee
+								text={
+									<span title="">
+										on{" "}
+										<a style={{ color: "white" }} href={props.data?.album.url}>
+											{props.data?.album.value}
+										</a>
+									</span>
+								}
+							/>
+						</small>
+					</>
+				) : (
+					<div
+						style={{
+							gridRow: "1 / 4",
+							alignSelf: "center",
+						}}
+					>
+						{props.playState === "not-playing"
+							? "Nothing is playing."
+							: props.playState === "timeout"
+							? "Connection could not be made."
+							: props.playState === "loading"
+							? "Loading…"
+							: "Token error!"}
+					</div>
+				)}
 			</div>
 			<div
 				style={{
