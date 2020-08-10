@@ -14,7 +14,7 @@ module.exports = {
 		},
 		description: `Yuto's island of things.`,
 		siteUrl: `https://starptr.netlify.app/`,
-		npApiUrl: `https://api.yart.me/now-playing/`,
+		npApiUrl: `https://api.yart.me/now-playing`,
 		social: {
 			twitter: `starptr`,
 			instagram: `yuto.rinsta`,
