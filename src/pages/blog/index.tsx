@@ -89,7 +89,10 @@ export const pageQuery = graphql`
 				}
 			}
 		}
-		allMdx(sort: { fields: [frontmatter___date], order: DESC }) {
+		allMdx(
+			sort: { fields: [frontmatter___date], order: DESC }
+			filter: { fields: { source: { eq: "blog" } } }
+		) {
 			edges {
 				node {
 					excerpt
