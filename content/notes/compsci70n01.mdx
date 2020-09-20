@@ -1,0 +1,36 @@
+---
+title: "Propositional Logic"
+date: "2020-09-19T15:46:00"
+description: "Highly symbolic notation"
+course: "COMPSCI 70"
+when: "Fall 2020"
+institution: "UC Berkeley"
+---
+
+propositions
+-no fuzzy terms
+
+vacuously true
+-true statements that tell us nothing
+
+$$
+\begin{aligned}
+	\forall x \mid P(x) \Longrightarrow Q(x) &\text{\quad where } \forall x \mid \neg P(x) \\
+	\forall x \in A \mid Q(x) &\text{\quad where } A \neq \varnothing \\
+\end{aligned}
+$$
+
+## Example
+
+> if $\mathit{14}$ is odd, then $\mathit{1 + 12 = 18}$
+
+# Equivalent statements to Logical Implication
+
+$P \Longrightarrow Q$ is the same as:
+- $\neg P \lor Q$
+- if $P$, then $Q$
+- $Q$ if $P$
+- $P$ only if $Q$
+- $P$ is sufficient for $Q$
+- $Q$ is necessary for $P$
+- $Q$ unless not $P$
