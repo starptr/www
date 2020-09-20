@@ -1,0 +1,48 @@
+---
+title: "Proofs"
+date: "2020-09-19T18:33:00"
+description: "Highly symbolic notation"
+course: "COMPSCI 70"
+item: ["Note", 1]
+when: "Fall 2020"
+institution: "UC Berkeley"
+---
+
+## Direct Proof
+
+For some statement $P \Longrightarrow Q$, begin by assuming $P$.
+
+## Proof by Contraposition
+
+For some statement $P \Longrightarrow Q$, instead prove $\neg Q \Longrightarrow \neg P$.
+
+## Proof by Contradiction
+
+For some statement $P$, assume $\neg P$. Establish that $\neg P \Longrightarrow R$ and $\neg P \Longrightarrow \neg R$. Since $R \land \neg R$ is a contradiction, $P$ is true.
+
+## Proof "by Cases"
+
+Partition the universe into multiple cases.
+
+### Example
+
+> $(\exists x, y \in \mathbb{R} \backslash \mathbb{Q})(x^y \in \mathbb{Q})$
+
+_Proof._ Let $x,y = \sqrt{2}$. Proceed by cases, where one must be true:
+
+#### Case 1: $x^y$ is rational
+
+The claim is true.
+
+#### Case 2: $x^y$ is irrational
+
+Thus, $\sqrt{2}^{\sqrt{2}}$ is irrational. Instead, let $x = \sqrt{2}^{\sqrt{2}}$. Then,
+
+$$
+	x^y = \left( \sqrt{2}^{\sqrt{2}} \right)^{\sqrt{2}} = \sqrt{2}^2 = 2
+$$
+
+so the claim is true. This is known as a non-constructive proof.
+
+non-constructive proof
+-$P$ is true, but the situation required for $P$ is unclear
