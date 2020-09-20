@@ -1,0 +1,46 @@
+---
+title: "Induction"
+date: "2020-09-19T19:30:00"
+description: "Induction + 1."
+course: "COMPSCI 70"
+item: ["Note", 3]
+when: "Fall 2020"
+institution: "UC Berkeley"
+---
+
+## Weak/Simple Induction
+
+Basic idea:
+
+$$
+	(P(0) \land (P(k) \Longrightarrow P(k+1))) \Longrightarrow (\forall n \in \mathbb{N}) P(n)
+$$
+
+## Stregthen Hypothesis
+
+Sometimes, showing $P(k) \Longrightarrow P(k+1)$ is really hard/impossible. In such problems, find $Q(x)$ such that
+
+$$
+	Q(x) \Longrightarrow P(x),
+$$
+
+$Q(0)$ is true, and show $Q(k) \Longrightarrow Q(k+1)$ instead.
+
+## Strong Induction
+
+Basic idea:
+
+$$
+	\left( \bigwedge_{i=0}^k P(i) \right) \Longrightarrow P(k+1)
+$$
+
+This looks harder, but it's actually easier to prove since more statements can be assumed to prove the same thing.
+
+- Hypothesis for Weak Induction:
+	- $P(k)$
+- Hypothesis for Strong Induction:
+	- $P(0)$
+	- $P(1)$
+	- $P(2)$
+	- $\ldots$
+	- $P(k)$
