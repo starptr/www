@@ -15,6 +15,7 @@ exports.createPages = async ({ graphql, actions }) => {
 						node {
 							fields {
 								slug
+								source
 							}
 							frontmatter {
 								title
@@ -32,7 +33,7 @@ exports.createPages = async ({ graphql, actions }) => {
 	}
 
 	// Create blog posts pages.
-	const posts = result.data.allMdx.edges;
+	const posts = result.data.allMdx.edges.filter(page => page.node.fields.source === "blog");
 
 	posts.forEach((post, index) => {
 		const previous = index === posts.length - 1 ? null : posts[index + 1].node;
@@ -49,7 +50,7 @@ exports.createPages = async ({ graphql, actions }) => {
 		});
 	});
 
-	// Create tag index pages
+	// Create tag index pages for blog posts
 	const allTags = [
 		...new Set(
 			posts.reduce((allTagsWithRedundancy, post) => {
@@ -75,17 +76,44 @@ exports.createPages = async ({ graphql, actions }) => {
 			},
 		});
 	});
+
+	//Create notes pages
+	const notes = result.data.allMdx.edges.filter(page => page.node.fields.source === "notes");
+
+	notes.forEach((note, index) => {
+		const previous = index === notes.length - 1 ? null : notes[index + 1].node;
+		const next = index === 0 ? null : notes[index - 1].node;
+
+		createPage({
+			path: note.node.fields.slug,
+			component: blogPost, //Use same layout as blog posts
+			context: {
+				slug: note.node.fields.slug, //this is passed as arg to pageQuery as $slug
+				previous,
+				next,
+			},
+		});
+	});
 };
 
 exports.onCreateNode = ({ node, actions, getNode }) => {
 	const { createNodeField } = actions;
 
 	if (node.internal.type === `Mdx`) {
-		const relativeFilePath = createFilePath({ node, getNode });
-		createNodeField({
-			name: `slug`,
-			node,
-			value: `/blog${relativeFilePath}`,
-		});
+		if (node.fields.source === `blog`) {
+			const relativeFilePath = createFilePath({ node, getNode });
+			createNodeField({
+				name: `slug`,
+				node,
+				value: `/blog${relativeFilePath}`,
+			});
+		} else if (node.fields.source === `notes`) {
+			const relativeFilePath = createFilePath({ node, getNode });
+			createNodeField({
+				name: `slug`,
+				node,
+				value: `/notes${relativeFilePath}`,
+			});
+		}
 	}
 };

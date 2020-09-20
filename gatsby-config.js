@@ -22,11 +22,20 @@ module.exports = {
 		},
 	},
 	plugins: [
+		`gatsby-plugin-mdx-source-name`,
 		{
 			resolve: `gatsby-source-filesystem`,
 			options: {
 				path: `${__dirname}/content/blog`,
 				name: `blog`,
+				ignore: [`**/\.hide`],
+			},
+		},
+		{
+			resolve: `gatsby-source-filesystem`,
+			options: {
+				path: `${__dirname}/content/notes`,
+				name: `notes`,
 				ignore: [`**/\.hide`],
 			},
 		},
