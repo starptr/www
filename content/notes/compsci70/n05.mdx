@@ -1,0 +1,31 @@
+---
+title: "Graph Theory"
+date: "2020-09-19T20:40:00"
+description: ""
+course: "COMPSCI 70"
+item: ["Note", 4]
+when: "Fall 2020"
+institution: "UC Berkeley"
+---
+
+incident
+-between edges and verticies
+
+neighbors/adjacent
+-between verticies when there's an edge
+
+Various names for different subsets of a graph:
+
+| Name          | No edge repeats | No vertex repeats | End @ Start | All edges once |
+| ------------- | :-------------: | :---------------: | :---------: | :------------: |
+| (simple) path |                 |         x         |             |                |
+| cycle         |                 |         x         |      x      |                |
+| walk          |                 |                   |             |                |
+| tour          |        x        |                   |      x      |                |
+| Eulerian walk |        x        |                   |             |       x        |
+| Eulerian tour |        x        |                   |      x      |       x        |
+
+Theorem. (Euler's Theorem)
+-An undirected graph $G = (V, E)$ has an Eulerian tour if and only if $G$ is even degree and connected (except for isolated verticies).
+
+_Proof._ 
