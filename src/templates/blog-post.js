@@ -11,7 +11,7 @@ import Tags from "../components/Tags";
 import { rhythm, scale } from "../utils/typography";
 
 const blogAdjustComponent = child => {
-	if (child.props.className === "footnotes") {
+	if (child.props?.className === "footnotes") {
 		return <small {...child.props} />;
 	} else {
 		return child;
