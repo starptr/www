@@ -18,7 +18,9 @@ const Theorem = props => {
 	}
 	return (
 		<h4 id={counter} style={{ display: "inline" }}>
-			<strong>Theorem {counter++}.</strong>
+			<strong>
+				Theorem {counter++}.{props.name ? ` ${props.name}.` : ""}
+			</strong>
 		</h4>
 	);
 };
